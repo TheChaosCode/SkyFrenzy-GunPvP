@@ -1,0 +1,90 @@
+#
+# A simple home script which allows players with the permission 'skript.home' to
+# define a home location with /sethome and teleport to that location whenever they want to with /home.
+#
+variables:
+	{%player%.SafeZone} = 0
+	{%player%.WarZone} = 0
+	{%player%.Spawntp} = 0
+	{%player%.Spectate}	= 0
+command /xxxxxSpectate:
+	executable by: players
+	trigger:
+		set {%player%.Spectate} to 1
+command /Spawn:
+	executable by: players
+	trigger:
+		if player's gamemode is creative:
+			set {SafeZone::%player's uuid%} to 1
+			teleport player to {Spawn}
+			stop
+		if {Damage::%player's uuid%} is 1:
+			send "&8&l>   &c&lCannot Teleport while in Combat!   &8&l<"
+			stop
+		send "&8&l>   &b&lTeleporting to Spawn please wait 5 Seconds...   &8&l<"
+		loop 100 times:
+			wait 1 tick
+			if {SpawnTP::%player's uuid%} is 1:
+				send "&8&l>   &c&lTeleportation Canceled!   &8&l<"
+				stop
+		set {SafeZone::%player's uuid%} to 1
+		teleport player to {Spawn}
+		hide the player from all players
+command /DeathSpawnTp:
+	executable by: players
+	trigger:
+		hide the player from all players
+		set {SafeZone::%player's uuid%} to 1 
+		teleport player to {Spawn}	
+every 2 tick:
+	loop {MSpawn::*}:
+		set {_SpawnRegion} to loop-value
+		loop all players:
+			if distance between {_SpawnRegion} and loop-player is more than 17:
+				set {SafeZone::%loop-player's uuid%} to 0
+		loop players in radius 17 around location of loop-value:
+			if loop-player is op:
+				stop
+			if {SafeZone::%loop-player's uuid%} is 0:
+				set {_Bound} to direction from {_SpawnRegion} to loop-player
+				push loop-player {_Bound} at speed 1				
+command /Regionclear:
+	executable by: players
+	trigger:
+		clear {MSpawn::*}
+every 15 tick:
+	loop {PotionPoint::*}:
+		loop players in radius 7 around location of loop-value:
+			give loop-player potion:16421
+command /PotionPoleclear:
+	executable by: players
+	trigger:
+		clear {PotionPoint::*}
+command /SetPotionPole:
+	description: Set Dungeon Portals
+	executable by: players
+	trigger:
+		set {PotionPole} to "True"
+		message "&c&lChaos &8&l&m|&3  Place pink wool to set Portal Pole"
+		stop
+command /SetMiddleArea:
+	description: Set Dungeon Portals
+	executable by: players
+	trigger:
+		if player is op:
+			add location of player to {MSpawn::*} 
+			message "&c&lChaos &8&l&m|&3  Region set!"
+on place of pink wool:
+	if {PotionPole} is "True":
+		add location of block to {PotionPoint::*} 
+		message "&c&lChaos &8&l&m|&3  Potion pole set!"
+		set {PotionPole} to "False"
+	else:
+		wait 1 tick
+on command: 
+	if command is "kit":
+		if player is not op:
+			cancel the event
+			Send "&8[&6KitPvP&8] &3/&b[Kit Name] &3Ex &8&l: &3/PvP"
+		else if player is op:
+			stop

@@ -1,0 +1,3 @@
+
+on server list ping:
+	set motd to "&r   &8&l-=[ &6&lSkyFrenzy &8&l]=-&r &eTwitter&f:&7 @SkyFrenzy%nl% &8&l> &eNo-Pay2Win&7, &eRanks&7, &eGuns&7, &eCustom&7, &eKitPvp &8&l<"

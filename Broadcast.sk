@@ -1,0 +1,53 @@
+every 1200 seconds:
+	broadcast ""
+	broadcast "&8&l-={ &6Don't Know how to Play? &3/Help &6can Help you out! &8&l}=-"
+	broadcast ""
+	stop
+every 2200 seconds:
+	broadcast ""
+	broadcast "&8&l-={ &6Want to change youre kit ? Try &e/spawn&6 and click the villager! &8&l}=-"
+	broadcast ""
+	stop	
+every 20 ticks:
+	if {KitPvP} is not set:
+		set {KitPvP} to "&f&lKitPvP"
+on join:
+	send "&8&l&m-={&r &bKitPvP &8&l&m}=----=&8&l[ &b&lValidHcf &8&l]&8&l&m=----={&r &bKitPvP &8&l&m}=-"
+	send "&r"
+	send "&r                          &aWelcome &9%player%&b!"
+	send "&r"
+	send "&r           &8&l> &eUpdate &7&l&m|&a&o 1.3 Finaly here !!! &8&l<"
+	send "&r"
+	send "&8&l&m-={&r &bKitPvP &8&l&m}=----=&8&l[ &b&l&m-===-&r &8&l]&8&l&m=----={&r &bKitPvP &8&l&m}=-"
+	while number of players is more than 0:
+		wait 5 tick
+		set tab header to "&8&l&m-={&r &bKitPvP &8&l&m}=-------=&8&l[ &b&lKitPvP &8&l]&8&l&m=-------={&r &bKitPvP &8&l&m}=-%nl%%nl%&cLevel &8&l&m|&e  %{Kills::%player's uuid%}%                 &cHP &8&l&m|&e  %health of player%%nl% %nl%&cBalance &8&l&m|&e  &6$&e%{Money::%player's uuid%}%             &cKillstreak &8&l&m|&e  %{KillStreak.Session::%player's uuid%}%%nl%&r" and footer to "%nl%&cRank &8&l&m|&e  %{Donor::%player's uuid%}%%nl%%nl%&6Keys &8&l&m|&a&o  %{GreenKey::%player's uuid%}% &8&l| &e&o%{YellowKey::%player's uuid%}% &8&l| &c&o%{RedKey::%player's uuid%}% &8&l| &d&o%{PinkKey::%player's uuid%}% &8&l| &b&o%{BlueKey::%player's uuid%}%%nl%%nl%&8&l&m-={&r &bKitPvp &8&l&m}=-------=&8&l[ &b&lKitPvP &8&l]&8&l&m=-------={&r &bKitPvp &8&l&m}=-%nl%&8&l   -={ &aServer Version 1.3.0 &8&l}=-" for player
+
+on command: 
+	if command is "Skript":
+		if player is not op:
+			cancel the event
+			Send "&8[&bKitPvP&8] &cUnknown Command."
+		else if player is op:
+			stop
+	if command is "Play":
+		if player is not op:
+			cancel the event
+			Send "&8[&bKitPvP&8] &cUnknown Command."
+		else if player is op:
+			stop
+	if command contains "sk":
+		if player is not op:
+			cancel the event
+			Send "&8[&bKitPvP&8] &cUnknown Command."
+		else if player is op:
+			stop
+	if command is "hub":
+		if player is not op:
+			cancel the event
+			Send "&8[&bKitPvP&8] &cUnknown Command."
+		else if player is op:
+			stop
+			
+		
+	

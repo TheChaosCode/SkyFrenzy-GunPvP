@@ -1,0 +1,92 @@
+command /Achievement:
+	executable by: players
+	trigger:
+		message "&8&l&m-={&r &b&l&m=&r &8&l&m}=-----=&8&l[ &2&lAchievements &8&l]&8&l&m=-----={&r &b&l&m=&r &8&l&m}=-"
+		message ""
+		if {Kills::%player's uuid%} is more than 0:
+			message "&9First Blood! &8&l| &7(&a&oComplete!&7)"
+			message " &3Get your First Kill in the game! &7Reward &8&l| &e&o$200"
+			message ""
+		else:
+			message "&9First Blood! &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c1&7)"
+			message " &3Get your First Kill in the game! &7Reward &8&l| &e&o$200"
+			message ""
+		
+		if {KillStreak.5::%player's uuid%} is more than 0:
+			message "&9Blood Baller! &8&l| &7(&a&oComplete!&7)"
+			message " &3Reach a Killstreak of 5! &7Reward &8&l| &e&o$250"
+			message ""
+		else:
+			message "&9Blood Baller! &8&l| &7(&cIncomplete!&7)"
+			message " &3Reach a Killstreak of 5! &7Reward &8&l| &e&o$250"
+			message ""
+		if {Deaths::%player's uuid%} is more than 0:
+			message "&9Baby Soul! &8&l| &7(&a&oComplete!&7)"
+			message " &3Die for the First time! &7Reward &8&l| &e&o$200"
+			message ""
+		else:
+			message "&9Baby Soul! &8&l| &7(&c%{Deaths::%player's uuid%}%&7/&c1&7)"
+			message " &3Die for the First time! &7Reward &8&l| &e&o$200"
+			message ""
+		if {Jumps::%player's uuid%} is more than 999:
+			message "&9Hopper! &8&l| &7(&a&oComplete!&7)"
+			message " &3Jump 1000 Times! &7Reward &8&l| &e&o$750"
+			message ""
+		else:
+			message "&9Hopper! &8&l| &7(&c%{Jumps::%player's uuid%}%&7/&c1000&7)"
+			message " &3Jump 1000 Times! &7Reward &8&l| &e&o$750"
+			message ""
+		if {Dodges::%player's uuid%} is more than 99:
+			message "&9Dodger! &8&l| &7(&a&oComplete!&7)"
+			message " &3Dodge 100 Attacks! &7Reward &8&l| &e&o$750"
+			message ""
+		else:
+			message "&9Dodger! &8&l| &7(&c%{Dodges::%player's uuid%}%&7/&c100&7)"
+			message " &3Dodge 100 Attacks! &7Reward &8&l| &e&o$750"
+			message ""
+		if {Votes::%player's uuid%} is more than 4:
+			message "&9Server Voucher! &8&l| &7(&a&oComplete!&7)"
+			message " &3Vote 5 Times! &7Reward &8&l| &e&o$1,000"
+			message ""
+		else:
+			message "&9Server Voucher! &8&l| &7(&c%{Votes::%player's uuid%}%&7/&c5&7)"
+			message " &3Vote 5 Times! &7Reward &8&l| &e&o$1,000"
+			message ""
+			
+command /Achievements:
+	executable by: players
+	trigger:
+		wait 1 tick
+		open chest with 3 row named "&eAchievements" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		if {Kills::%player's uuid%} is more than 0:
+			format SLOT 10 of player with iron sword named "&9First Blood" with lore "&7(&a&oComplete!&7) || &7Make your first kill!" to be unstealable
+		else:
+			format SLOT 10 of player with red stained glass pane named "&9First Blood" with lore "&7(&c%{Kills::%player's uuid%}%&7/&c1&7) || &7Make your first kill!" to be unstealable
+		if {KillStreak.5::%player's uuid%} is more than 0:
+			format SLOT 11 of player with iron sword named "&9Blood Baller" with lore "&7(&a&oComplete!&7) || &7Get your first 5 killstreak!" to be unstealable
+		else:
+			format SLOT 11 of player with red stained glass pane named "&9Blood Baller" with lore "&7(&c{KillStreak.5::%player's uuid%}&7/&c5&7) || &7Get your first 5 killstreak!" to be unstealable
+		format SLOT 12 of player with iron sword named "&cNot done !" with lore "&cNot done !" to be unstealable
+		format SLOT 13 of player with iron sword named "&cNot done !" with lore "&cNot done !" to be unstealable
+		format SLOT 14 of player with iron sword named "&cNot done !" with lore "&cNot done !" to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable

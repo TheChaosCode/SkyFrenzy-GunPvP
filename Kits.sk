@@ -1,0 +1,1495 @@
+every 1 ticks:
+	loop all players:
+		set {_x} to x-coordinate of loop-player
+		set {_y} to rounded y-coordinate of loop-player
+		set {_z} to z-coordinate of loop-player
+		if {Kit::%loop-player's uuid%} is "PvP":
+			stop
+		if {Kit::%loop-player's uuid%} is "Scout":
+			stop
+		if {Kit::%loop-player's uuid%} is "Heavy":
+			stop
+		if {Kit::%loop-player's uuid%} is "Soldier":
+			stop
+		if {Kit::%loop-player's uuid%} is "Fireman":
+			stop
+		if {Kit::%loop-player's uuid%} is "Samurai":
+			stop
+		if {Kit::%loop-player's uuid%} is "Viper":
+			stop
+		if {Kit::%loop-player's uuid%} is "Gunner":
+			stop
+		if {Kit::%loop-player's uuid%} is "Ranger":
+			stop
+		if {Kit::%loop-player's uuid%} is "Medic":
+			stop
+		if {Kit::%loop-player's uuid%} is "Pyro":
+			execute console command "/play flame speed:0 loc:Main,%{_x}%,%{_y}%,%{_z}% num:3 offset:0.3"
+		if {Kit::%loop-player's uuid%} is "Witcher":
+			stop
+		if {Kit::%loop-player's uuid%} is "Kamakaze":
+			set helmet of loop-player to tnt
+			execute console command "/play lava speed:0 loc:Main,%{_x}%,%{_y}%,%{_z}% num:3 offset:0.15"
+		if {Kit::%loop-player's uuid%} is "Atonic":
+			stop
+		if {Kit::%loop-player's uuid%} is "Yeti":
+			stop
+		if {Kit::%loop-player's uuid%} is "Spy":
+			execute console command "/play footstep speed:0 loc:Main,%{_x}%,%{_y}%,%{_z}% num:3 offset:0.25"
+			execute console command "/play fireworks_spark speed:0 loc:Main,%{_x}%,%{_y}%,%{_z}% num:3 offset:0.15 speed:0.1"
+		if {Kit::%loop-player's uuid%} is "Heavy2":
+			stop
+		if {Kit::%loop-player's uuid%} is "Soldier2":
+			stop
+		if {Kit::%loop-player's uuid%} is "PyroManiac":
+			execute console command "/play flame speed:0 loc:Main,%{_x}%,%{_y}%,%{_z}% num:3 offset:0.3"
+			execute console command "/play reddust speed:0 loc:Main,%{_x}%,%{_y}%,%{_z}% num:3 offset:0.25"
+		if {Kit::%loop-player's uuid%} is "Assassin":
+			execute console command "/play spell loc:Main,%{_x}%,%{_y}%,%{_z}% num:3 offset:0.2"
+		if {Kit::%loop-player's uuid%} is "Demolition":
+			stop
+		if {Kit::%loop-player's uuid%} is "Hype":
+			stop
+		if {Kit::%loop-player's uuid%} is "EagleSniper":
+			execute console command "/play footstep speed:0 loc:Main,%{_x}%,%{_y}%,%{_z}% num:3 offset:0.25"
+every 3 ticks:
+	loop all players:
+		if {Kit::%loop-player's uuid%} is "Mecha":
+			stop
+		if {Kit::%loop-player's uuid%} is "Eagle":
+			stop
+
+
+command /KitsSelection:
+	trigger:
+		open chest with 6 row named "&cKits" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with stone sword named "&8[&cPvP&8]" with lore "&3Rank Required &8&l| &8[&fRecruit&8]|| ||&3Type &8&l| &ePistol" to close then run [make player execute command "/PvP"]
+		format SLOT 11 of player with bow named "&8[&cScout&8]" with lore "&3Rank Required &8&l| &8[&fRecruit&8]|| ||&3Type &8&l| &eSniper" to close then run [make player execute command "/Scout"]
+		format SLOT 12 of player with gold chestplate named "&8[&cHeavy&8]" with lore "&3Rank Required &8&l| &8[&fRecruit&8]|| ||&3Type &8&l| &eShotgun" to close then run [make player execute command "/Heavy"]
+		format SLOT 13 of player with gold helmet named "&8[&cSoldier&8]" with lore "&3Rank Required &8&l| &8[&fRecruit&8]|| ||&3Type &8&l| &eAssult Rifle" to close then run [make player execute command "/Soldier"]
+		format SLOT 14 of player with flint and steel named "&8[&cFireman&8]" with lore "&3Rank Required &8&l| &8[&fRecruit&8]|| ||&3Type &8&l| &eRocket Launcher" to close then run [make player execute command "/Fireman"]
+		if {Rank::%player's uuid%} is more than or equal to 1:
+			format SLOT 15 of player with iron sword named "&8[&3Samurai&8]" with lore "&3Rank Required &8&l| &8[&7Private&8]|| ||&3Type &8&l| &ePistol" to close then run [make player execute command "/Samurai"]
+		else:
+			format SLOT 15 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&7Private&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 1:
+			format SLOT 16 of player with iron leggings named "&8[&3Viper&8]" with lore "&3Rank Required &8&l| &8[&7Private&8]|| ||&3Type &8&l| &eAssult Rifle" to close then run [make player execute command "/Viper"]
+		else:
+			format SLOT 16 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&7Private&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 2:
+			format SLOT 19 of player with iron hoe named "&8[&3Gunner&8]" with lore "&3Rank Required &8&l| &8[&3Private2&8]|| ||&3Type &8&l| &eMachine Gun" to close then run [make player execute command "/Gunner"]
+		else:
+			format SLOT 19 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&3Private2&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 2:
+			format SLOT 20 of player with bow named "&8[&3Ranger&8]" with lore "&3Rank Required &8&l| &8[&3Private2&8]|| ||&3Type &8&l| &eSniper" to close then run [make player execute command "/Ranger"]
+		else:
+			format SLOT 20 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&3Private2&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 3:
+			format SLOT 21 of player with arrow named "&8[&dMedic&8]" with lore "&3Rank Required &8&l| &8[&bSpecialist&8]|| ||&3Type &8&l| &eBlowDart" to close then run [make player execute command "/Medic"]
+		else:
+			format SLOT 21 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&bSpecialist&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 3:
+			format SLOT 22 of player with blaze powder named "&8[&cPyro&8]" with lore "&3Rank Required &8&l| &8[&bSpecialist&8]|| ||&3Type &8&l| &eAssult Rifle" to close then run [make player execute command "/Pyro"]
+		else:
+			format SLOT 22 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&bSpecialist&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 4:
+			format SLOT 23 of player with potion named "&8[&5Witcher&8]" with lore "&3Rank Required &8&l| &8[&1Corporal&8]|| ||&3Type &8&l| &eAssult Rifle + Launcher" to close then run [make player execute command "/Witcher"]
+		else:
+			format SLOT 23 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&1Corpral&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 4:
+			format SLOT 24 of player with tnt named "&8[&cKamakaze&8]" with lore "&3Rank Required &8&l| &8[&1Corporal&8]|| ||&3Type &8&l| &eExplosive" to close then run [make player execute command "/Kamakaze"]
+		else:
+			format SLOT 24 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&1Corpral&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 5:
+			format SLOT 25 of player with coal block named "&8[&7Atonic&8]" with lore "&3Rank Required &8&l| &8[&2Sergeant&8]|| ||&3Type &8&l| &eMachine Gun" to close then run [make player execute command "/Atonic"]
+		else:
+			format SLOT 25 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&2Sergeant&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 5:
+			format SLOT 28 of player with ice named "&8[&bYeti&8]" with lore "&3Rank Required &8&l| &8[&2Sergeant&8]|| ||&3Type &8&l| &eAssult Cannon" to close then run [make player execute command "/Yeti"]
+		else:
+			format SLOT 28 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&2Sergeant&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 6:
+			format SLOT 29 of player with paper named "&8[&fSpy&8]" with lore "&3Rank Required &8&l| &8[&aSSergeant&8]|| ||&3Type &8&l| &eSniper" to close then run [make player execute command "/Spy"]
+		else:
+			format SLOT 29 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&aSSergeant&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 6:
+			format SLOT 30 of player with iron chestplate named "&8[&2Heavy2&8]" with lore "&3Rank Required &8&l| &8[&aSSergeant&8]|| ||&3Type &8&l| &eShotgun" to close then run [make player execute command "/Heavy2"]
+		else:
+			format SLOT 30 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&aSSergeant&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 7:
+			format SLOT 31 of player with iron helmet named "&8[&3Soldier2&8]" with lore "&3Rank Required &8&l| &8[&eSFC&8]|| ||&3Type &8&l| &eAssult Rifle" to close then run [make player execute command "/Soldier2"]
+		else:
+			format SLOT 31 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&eSFC&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 7:
+			format SLOT 32 of player with magma cream named "&8[&4&oPyroManiac&8]" with lore "&3Rank Required &8&l| &8[&eSFC&8]|| ||&3Type &8&l| &eAssult Blaster" to close then run [make player execute command "/PyroManiac"]
+		else:
+			format SLOT 32 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&eSFC&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 8:
+			format SLOT 33 of player with iron sword named "&8[&f&oAssassin&8]" with lore "&3Rank Required &8&l| &8[&6MasterSergeant&8]|| ||&3Type &8&l| &ePistol" to close then run [make player execute command "/Assassin"]
+		else:
+			format SLOT 33 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&6MasterSergeant&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 8:
+			format SLOT 34 of player with redstone block named "&8[&4&oDemolition&8]" with lore "&3Rank Required &8&l| &8[&6MasterSergeant&8]|| ||&3Type &8&l| &eExplosive" to close then run [make player execute command "/Demolition"]
+		else:
+			format SLOT 34 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&6MasterSergeant&8] &7Rank" to be unstealable
+		if {Rank::%player's uuid%} is more than or equal to 9:
+			format SLOT 37 of player with note block named "&8[&d&lHype&8]" with lore "&3Rank Required &8&l| &8[&cFirstSergeant&8]|| ||&3Type &8&l| &ePowers" to close then run [make player execute command "/Hype"]
+		else:
+			format SLOT 37 of player with white stained glass pane named "&8[&eLocked&8]" with lore "&7Requires &8[&cFirstSergeant&8] &7Rank" to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 27 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 35 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 36 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 44 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 45 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 46 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 47 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 48 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 49 of player with redstone block named "&8[&3Back to Kits Menu&8]" to run [make player execute command "/Kits"]
+		format SLOT 50 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 51 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 52 of player with blue stained glass pane named " " to be unstealable
+		if {Donor::%player's uuid%} is "None":
+			format SLOT 53 of player with emerald named "&8[&7Locked&8]" with lore "||&3Requires &8[&dVip&8] &3To Unlock." to be unstealable
+		else:
+			format SLOT 53 of player with emerald named "&8[&bVip Kits&8]" to run [make player execute command "/XDonorKits"]
+command /XDonorKits:
+	trigger:
+		open chest with 6 row named "&cKits &7Donor Kits" to player
+		set {_PvPer} to glowing gold sword
+		set {_Heavy} to glowing diamond chestplate
+		set {_Scout} to glowing bow
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with {_PvPer} named "&8[&ePvPer&8]" with lore "&3||&3Type &8&l| &6Pistol" to close then run [make player execute command "/PvPer"]
+		format SLOT 11 of player with {_Heavy} named "&8[&dJuggernaut&8]" with lore "&3||&3Type &8&l| &6Shotgun" to close then run [make player execute command "/juggernaut"]
+		format SLOT 12 of player with {_Scout} named "&8[&aEagleSniper&8]" with lore "&3||&3Type &8&l| &6Sniper" to close then run [make player execute command "/EagleSniper"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 27 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 35 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 36 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 44 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 45 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 46 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 47 of player with arrow named "&8[&7Back to Kits&8]" to run [make player execute command "/KitsSelection"]
+		format SLOT 48 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 49 of player with redstone block named "&8[&3Back to Kits Menu&8]" to run [make player execute command "/Kits"]
+		format SLOT 50 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 51 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 52 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 53 of player with blue stained glass pane named " " to be unstealable
+command /Kits:
+	trigger:
+		open chest with 3 row named "&cKits" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with diamond sword named "&3Kits" with lore "&7View all of the kits!" to run [make player execute command "/KitsSelection"]
+		format SLOT 12 of player with chest named "&bKit Wardrobe" with lore "&7View and use all of your Bought kits!" to run [make player execute command "/KitsxWardrobe"]
+		format SLOT 14 of player with ender chest named "&eAttachment Selection" with lore "&7View and use all of your Bought Attachments!|| ||&3Attachment &8&l&m|&e %{Attachment::%player's uuid%}%" to run [make player execute command "/AttachmentxWardrobe"]
+		format SLOT 16 of player with nether star named "&aPerk Selection" with lore "&7View and use all of your Perks!|| ||&3Perk &8&l&m|&e %{Perk::%player's uuid%}%" to run [make player execute command "/PerkxWardrobe"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+command /KitsxWardrobe:
+	trigger:
+		open chest with 6 row named "&cKits &7Wardrobe" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		if {Kit.Mecha::%player's uuid%} is 1:
+			format SLOT 10 of player with iron chestplate named "&8[&1Mecha&8]" with lore "&3||&3Type &8&l| &6Lightning Rifle" to close then run [make player execute command "/Mecha"]
+		else:
+			format SLOT 10 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.Eagle::%player's uuid%} is 1:
+			format SLOT 11 of player with string named "&8[&6Eagle&8]" with lore "&3||&3Type &8&l| &6Powers" to close then run [make player execute command "/Eagle"]
+		else:
+			format SLOT 11 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.Ninja::%player's uuid%} is 1:
+			format SLOT 12 of player with iron pickaxe named "&8[&0&lNinja&8]" with lore "&3||&3Type &8&l| &6Utilities" to close then run [make player execute command "/Ninja"]
+		else:
+			format SLOT 12 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.CloudRunner::%player's uuid%} is 1:
+			format SLOT 13 of player with bone meal named "&8[&7&lCloudRunner&8]" with lore "&3||&3Type &8&l| &6Powers" to close then run [make player execute command "/CloudRunner"]
+		else:
+			format SLOT 13 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.Frost::%player's uuid%} is 1:
+			format SLOT 14 of player with snowball named "&8[&bFrost&8]" with lore "&3||&3Type &8&l| &6Powers" to close then run [make player execute command "/Frost"]
+		else:
+			format SLOT 14 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.Endermage::%player's uuid%} is 1:
+			format SLOT 15 of player with eye of ender named "&8[&5Endermage&8]" with lore "&3||&3Type &8&l| &6Sniper" to close then run [make player execute command "/Endermage"]
+		else:
+			format SLOT 15 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.Hobo::%player's uuid%} is 1:
+			format SLOT 16 of player with chain chestplate named "&8[&6Hobo&8]" with lore "&3||&3Type &8&l| &6Rocket Launcher" to close then run [make player execute command "/Hobo"]
+		else:
+			format SLOT 16 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.Astronomist::%player's uuid%} is 1:
+			format SLOT 19 of player with firework star of infinity 1 named "&8[&6Atronomist&8]" with lore "&3||&3Type &8&l| &6Powers" to close then run [make player execute command "/Astronomist"]
+		else:
+			format SLOT 19 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.Falcon::%player's uuid%} is 1:
+			format SLOT 20 of player with string of infinity 1 named "&8[&6Falcon&8]" with lore "&3||&3Type &8&l| &6Powers" to close then run [make player execute command "/Falcon"]
+		else:
+			format SLOT 20 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Kit.Support::%player's uuid%} is 1:
+			format SLOT 21 of player with redstone of infinity 1 named "&8[&bSupport&8]" with lore "&3||&3Type &8&l| &6Support" to close then run [make player execute command "/Support"]
+		else:
+			format SLOT 21 of player with white stained glass pane named " " with lore " " to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 27 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 35 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 36 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 44 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 45 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 46 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 47 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 48 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 49 of player with redstone block named "&8[&3Back to Kits Menu&8]" to run [make player execute command "/Kits"]
+		format SLOT 50 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 51 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 52 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 53 of player with blue stained glass pane named " " to be unstealable
+command /shop:
+	trigger:
+		open chest with 3 row named "&bShop" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 11 of player with diamond axe named "&eAttachment Shop" with lore "&7Purchase cool Attachments!" to run [make player execute command "/Attachmentshop"]
+		format SLOT 13 of player with diamond sword named "&3&lKits Shop" with lore "&7Purchase Unique kits!" to run [make player execute command "/Kitsshop"]
+		format SLOT 15 of player with diamond chestplate named "&aPerk Shop" with lore "&7Purchase awesome Perks!" to run [make player execute command "/Perkshop"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+command /KitsShop:
+	trigger:
+		open chest with 6 row named "&bShop&7 Kits" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with diamond sword named "&8[&1Mecha&8]" with lore "&3Price &8&l| &6$5,000|| || &3Type &8&l| &6Lightning Rifle" to close then run [make player execute command "/MechaxPurchase"]
+		format SLOT 11 of player with string named "&8[&6Eagle&8]" with lore "&3Price &8&l| &6$6,000|| || &3Type &8&l| &6Powers" to close then run [make player execute command "/EaglexPurchase"]
+		format SLOT 12 of player with iron pickaxe named "&8[&0&lNinja&8]" with lore "&3Price &8&l| &6$5,500|| || &3Type &8&l| &6Untilities" to close then run [make player execute command "/NinjaxPurchase"]
+		format SLOT 13 of player with bone meal named "&8[&7&lCloudRunner&8]" with lore "&3Price &8&l| &6$8,500|| || &3Type &8&l| &6Powers" to close then run [make player execute command "/CloudRunnerxPurchase"]
+		format SLOT 14 of player with snowball named "&8[&bFrost&8]" with lore "&3Price &8&l| &6$9,000|| || &3Type &8&l| &6Powers" to close then run [make player execute command "/FrostxPurchase"]
+		format SLOT 15 of player with eye of ender named "&8[&5Endermage&8]" with lore "&3Price &8&l| &6$7,000|| || &3Type &8&l| &6Sniper" to close then run [make player execute command "/EndermagexPurchase"]
+		format SLOT 16 of player with chain chestplate named "&8[&6&oHobo&8]" with lore "&3Price &8&l| &6$12,500|| || &3Type &8&l| &6Rocket Launcher" to close then run [make player execute command "/HoboxPurchase"]
+		format SLOT 19 of player with firework star of infinity 1 named "&8[&6Atronomist&8]" with lore "&3Price &8&l| &6$10,000|| || &3Type &8&l| &6Powers" to close then run [make player execute command "/AstronomistxPurchase"]
+		format SLOT 20 of player with redstone of infinity 1 named "&8[&bSupport&8]" with lore "&3Price &8&l| &6$15,000|| || &3Type &8&l| &6Support" to close then run [make player execute command "/SupportxPurchase"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 27 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 35 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 36 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 44 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 45 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 46 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 47 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 48 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 49 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 50 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 51 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 52 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 53 of player with blue stained glass pane named " " to be unstealable
+command /PvP:
+	executable by: players
+	trigger:
+		set {_Kit} to "PvP"
+		set {_count} to 0
+		if {SafeZone::%player's uuid%} is 0:
+			send "&c&lYou cannot Pick kits on the battlefield!"
+			stop
+		else:
+			loop 36 times:
+				set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+				add 1 to {_count}
+			set the helmet of player to {Kit.%{_Kit}%.helmet}
+			set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+			set the leggings of player to {Kit.%{_Kit}%.Leggings}
+			set the boots of player to {Kit.%{_Kit}%.boots}
+			execute console command "/effect %player% clear"
+			apply health boost 5 to player for 10000 hours
+			apply speed 1 to player for 10000 hours
+			heal the player
+			set {Kit::%player's uuid%} to "%{_Kit}%"
+		if {Attachment::%player's uuid%} is "None":
+			stop
+		else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+			set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+command /Scout:
+	executable by: players
+	trigger:
+		set {_Kit} to "Scout"
+		set {_count} to 0
+		if {SafeZone::%player's uuid%} is 0:
+			send "&c&lYou cannot Pick kits on the battlefield!"
+			stop
+		else:
+			loop 36 times:
+				set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+				add 1 to {_count}
+			set the helmet of player to {Kit.%{_Kit}%.helmet}
+			set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+			set the leggings of player to {Kit.%{_Kit}%.Leggings}
+			set the boots of player to {Kit.%{_Kit}%.boots}
+			execute console command "/effect %player% clear"
+			apply health boost 5 to player for 10000 hours
+			apply speed 2 to player for 10000 hours
+			heal the player
+			set {Kit::%player's uuid%} to "%{_Kit}%"
+		if {Attachment::%player's uuid%} is "None":
+			stop
+		else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+			set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+command /Heavy:
+	executable by: players
+	trigger:
+		set {_Kit} to "Heavy"
+		set {_count} to 0
+		if {SafeZone::%player's uuid%} is 0:
+			send "&c&lYou cannot Pick kits on the battlefield!"
+			stop
+		else:
+			loop 36 times:
+				set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+				add 1 to {_count}
+			set the helmet of player to {Kit.%{_Kit}%.helmet}
+			set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+			set the leggings of player to {Kit.%{_Kit}%.Leggings}
+			set the boots of player to {Kit.%{_Kit}%.boots}
+			execute console command "/effect %player% clear"
+			apply health boost 5 to player for 10000 hours
+			apply speed 1 to player for 10000 hours
+			heal the player
+			set {Kit::%player's uuid%} to "%{_Kit}%"
+		if {Attachment::%player's uuid%} is "None":
+			stop
+		else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+			set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+command /Soldier:
+	executable by: players
+	trigger:
+		set {_Kit} to "Soldier"
+		set {_count} to 0
+		if {SafeZone::%player's uuid%} is 0:
+			send "&c&lYou cannot Pick kits on the battlefield!"
+			stop
+		else:
+			loop 36 times:
+				set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+				add 1 to {_count}
+			set the helmet of player to {Kit.%{_Kit}%.helmet}
+			set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+			set the leggings of player to {Kit.%{_Kit}%.Leggings}
+			set the boots of player to {Kit.%{_Kit}%.boots}
+			execute console command "/effect %player% clear"
+			apply health boost 5 to player for 10000 hours
+			apply speed 1 to player for 10000 hours
+			heal the player
+			set {Kit::%player's uuid%} to "%{_Kit}%"
+		if {Attachment::%player's uuid%} is "None":
+			stop
+		else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+			set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+command /Fireman:
+	executable by: players
+	trigger:
+		set {_Kit} to "Fireman"
+		set {_count} to 0
+		if {SafeZone::%player's uuid%} is 0:
+			send "&c&lYou cannot Pick kits on the battlefield!"
+			stop
+		else:
+			loop 36 times:
+				set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+				add 1 to {_count}
+			set the helmet of player to {Kit.%{_Kit}%.helmet}
+			set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+			set the leggings of player to {Kit.%{_Kit}%.Leggings}
+			set the boots of player to {Kit.%{_Kit}%.boots}
+			execute console command "/effect %player% clear"
+			apply health boost 5 to player for 10000 hours
+			apply speed 1 to player for 10000 hours
+			heal the player
+			set {Kit::%player's uuid%} to "%{_Kit}%"
+		if {Attachment::%player's uuid%} is "None":
+			stop
+		else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+			set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+command /Samurai:
+	executable by: players
+	trigger:
+		set {_Kit} to "Samurai"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 1:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply speed 2 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Viper:
+	executable by: players
+	trigger:
+		set {_Kit} to "Viper"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 1:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply jump boost 3 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Gunner:
+	executable by: players
+	trigger:
+		set {_Kit} to "Gunner"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 2:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Ranger:
+	executable by: players
+	trigger:
+		set {_Kit} to "Ranger"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 2:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Medic:
+	executable by: players
+	trigger:
+		set {_Kit} to "Medic"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 3:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 7 to player for 10000 hours
+				apply regeneration 2 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Pyro:
+	executable by: players
+	trigger:
+		set {_Kit} to "Pyro"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 3:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply fire resistance 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Witcher:
+	executable by: players
+	trigger:
+		set {_Kit} to "Witcher"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 4:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply speed 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Kamakaze:
+	executable by: players
+	trigger:
+		set {_Kit} to "Kamakaze"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 4:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply speed 3 to player for 10000 hours
+				apply fire resistance 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Atonic:
+	executable by: players
+	trigger:
+		set {_Kit} to "Atonic"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 5:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 10 to player for 10000 hours
+				apply slowness 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Yeti:
+	executable by: players
+	trigger:
+		set {_Kit} to "Yeti"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 5:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply jump 2 to player for 10000 hours
+				apply speed 2 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Spy:
+	executable by: players
+	trigger:
+		set {_Kit} to "Spy"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 6:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply haste 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Heavy2:
+	executable by: players
+	trigger:
+		set {_Kit} to "Heavy2"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 6:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 18 to player for 10000 hours
+				apply slowness 2 to player for 10000 hours
+				apply fire resistance 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Soldier2:
+	executable by: players
+	trigger:
+		set {_Kit} to "Soldier2"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 7:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply jump 2 to player for 10000 hours
+				apply speed 2 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /PyroManiac:
+	executable by: players
+	trigger:
+		set {_Kit} to "PyroManiac"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 7:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply speed 2 to player for 10000 hours
+				apply jump 1 to player for 10000 hours
+				apply fire resistance 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Assassin:
+	executable by: players
+	trigger:
+		set {_Kit} to "Assassin"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 8:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply speed 4 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Demolition:
+	executable by: players
+	trigger:
+		set {_Kit} to "Demolition"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 8:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 10 to player for 10000 hours
+				apply speed 2 to player for 10000 hours
+				apply jump 1 to player for 10000 hours
+				apply fire resistance 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Hype:
+	executable by: players
+	trigger:
+		set {_Kit} to "Hype"
+		set {_count} to 0
+		if {Rank::%player's uuid%} is more than or equal to 9:
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 10 to player for 10000 hours
+				apply regeneration 2 to player for 10000 hours
+				apply jump 2 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+				
+				
+				
+command /PvPer:
+	executable by: players
+	trigger:
+		if {Donor::%player's uuid%} is "none":
+			wait 1 tick
+		else:
+			set {_Kit} to "PvPer"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 10 to player for 10000 hours
+				apply regeneration 1 to player for 10000 hours
+				apply speed 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+command /juggernaut:
+	executable by: players
+	trigger:
+		if {Donor::%player's uuid%} is "none":
+			wait 1 tick
+		else:
+			set {_Kit} to "Juggernaut"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 10 to player for 10000 hours
+				apply regeneration 3 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+command /EagleSniper:
+	executable by: players
+	trigger:
+		if {Donor::%player's uuid%} is "none":
+			wait 1 tick
+		else:
+			set {_Kit} to "EagleSniper"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:	
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 11 to player for 10000 hours
+				apply regeneration 2 to player for 10000 hours
+				apply speed 1 to player for 10000 hours
+				apply night vision 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+			
+			
+			
+command /MechaxPurchase:
+	trigger:
+		if {Kit.Mecha::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 4999:
+			remove 5000 from {Money::%player's uuid%}
+			set {Kit.Mecha::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&1Mecha&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"		
+command /EaglexPurchase:
+	trigger:
+		if {Kit.Eagle::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 5999:
+			remove 6000 from {Money::%player's uuid%}
+			set {Kit.Eagle::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&6Eagle&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /NinjaxPurchase:
+	trigger:
+		if {Kit.Ninja::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 5499:
+			remove 5500 from {Money::%player's uuid%}
+			set {Kit.Ninja::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&0&lNinja&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /CloudRunnerxPurchase:
+	trigger:
+		if {Kit.CloudRunner::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 8499:
+			remove 8500 from {Money::%player's uuid%}
+			set {Kit.CloudRunner::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&7&lCloudRunner&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /FrostxPurchase:
+	trigger:
+		if {Kit.Frost::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 8999:
+			remove 9000 from {Money::%player's uuid%}
+			set {Kit.Frost::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&bFrost&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /EndermagexPurchase:
+	trigger:
+		if {Kit.Endermage::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 6999:
+			remove 7000 from {Money::%player's uuid%}
+			set {Kit.Endermage::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&5Endermage&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /HoboxPurchase:
+	trigger:
+		if {Kit.Hobo::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 11999:
+			remove 12000 from {Money::%player's uuid%}
+			set {Kit.Hobo::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&6Hobo&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /AstronomistxPurchase:
+	trigger:
+		if {Kit.Astronomist::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 9999:
+			remove 10000 from {Money::%player's uuid%}
+			set {Kit.Astronomist::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&6Astronomist&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /SupportxPurchase:
+	trigger:
+		if {Kit.Support::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 14999:
+			remove 10000 from {Money::%player's uuid%}
+			set {Kit.Support::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased kit '&bSupport&a&l'"
+			add 1 to {Kits::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"			
+			
+command /Mecha:
+	executable by: players
+	trigger:
+		if {Kit.Mecha::%player's uuid%} is 1:
+			set {_Kit} to "Mecha"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 8 to player for 10000 hours
+				apply jump 1 to player for 10000 hours
+				apply regeneration 1 to player for 10000 hours
+				apply fire resistance 1 to player for 10000 hours
+				apply speed 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Eagle:
+	executable by: players
+	trigger:
+		if {Kit.Eagle::%player's uuid%} is 1:
+			set {_Kit} to "Eagle"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				apply speed 2 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Ninja:
+	executable by: players
+	trigger:
+		if {Kit.Ninja::%player's uuid%} is 1:
+			set {_Kit} to "Ninja"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 10 to player for 10000 hours
+				apply speed 6 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /CloudRunner:
+	executable by: players
+	trigger:
+		if {Kit.CloudRunner::%player's uuid%} is 1:
+			set {_Kit} to "CloudRunner"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 15 to player for 10000 hours
+				apply speed 8 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Frost:
+	executable by: players
+	trigger:
+		if {Kit.Frost::%player's uuid%} is 1:
+			set {_Kit} to "Frost"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 6 to player for 10000 hours
+				apply speed 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Endermage:
+	executable by: players
+	trigger:
+		if {Kit.Endermage::%player's uuid%} is 1:
+			set {_Kit} to "Endermage"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 6 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Hobo:
+	executable by: players
+	trigger:
+		if {Kit.Hobo::%player's uuid%} is 1:
+			set {_Kit} to "Hobo"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 5 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Astronomist:
+	executable by: players
+	trigger:
+		if {Kit.Astronomist::%player's uuid%} is 1:
+			set {_Kit} to "Astronomist"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 13 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Falcon:
+	executable by: players
+	trigger:
+		if {Kit.Falcon::%player's uuid%} is 1:
+			set {_Kit} to "Falcon"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 7 to player for 10000 hours
+				apply speed 3 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop
+command /Support:
+	executable by: players
+	trigger:
+		if {Kit.Support::%player's uuid%} is 1:
+			set {_Kit} to "Support"
+			set {_count} to 0
+			if {SafeZone::%player's uuid%} is 0:
+				send "&c&lYou cannot Pick kits on the battlefield!"
+				stop
+			else:
+				loop 36 times:
+					set slot {_count} of player's inventory to {Kit.%{_Kit}%.%{_count}%}
+					add 1 to {_count}
+				set the helmet of player to {Kit.%{_Kit}%.helmet}
+				set the chestplate of player to {Kit.%{_Kit}%.Chestplate}
+				set the leggings of player to {Kit.%{_Kit}%.Leggings}
+				set the boots of player to {Kit.%{_Kit}%.boots}
+				execute console command "/effect %player% clear"
+				apply health boost 2 to player for 10000 hours
+				apply speed 2 to player for 10000 hours
+				apply night vision 1 to player for 10000 hours
+				heal the player
+				set {Kit::%player's uuid%} to "%{_Kit}%"
+			if {Attachment::%player's uuid%} is "None":
+				stop
+			else if {Attachment::%player's uuid%} is "%{Attachment::%player's uuid%}%":
+				set SLOT 8 of player to {Attachment.%{Attachment::%player's uuid%}%}
+		else:
+			send "&c&lYou dont have access to this kit!"
+			stop

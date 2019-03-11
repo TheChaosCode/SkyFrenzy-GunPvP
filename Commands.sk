@@ -1,0 +1,69 @@
+command /HC:
+	trigger:
+		message "&8&l&m-={&r &bPage 1&3/&b2 &8&l&m}=-=&8&l[ &4&lKitPvp &8&l]&8&l&m=-={&r &bPage 1&3/&b2 &8&l&m}=-"
+		message "&r"
+		message "&r   &3&l/Help &8&l&m|&7  Open up the Help menu"
+		message "&r   &3&l/flight &8&l&m|&7  Enable fly mode"
+		message "&r   &3&l/Kick &8&l&m|&7  kick a player"
+		message "&r   &3&l/Ban &8&l&m|&7  kick a player"
+		message "&r"
+		message "&8&l&m-={&r &bPage 1&3/&b2 &8&l&m}=-=&8&l[ &4&lKitPvp &8&l]&8&l&m=-={&r &bPage 1&3/&b2 &8&l&m}=-"
+		stop
+		
+command /Flight:
+	trigger:
+		if {Flight::%player's uuid%} is not set:
+			set {Flight::%player's uuid%} to false
+		if "%player%" is "Discarding":
+			if {Flight::%player's uuid%} is false:
+				set {Flight::%player's uuid%} to true
+				allow fly for player
+				set {Gravity::%player's uuid%} to 0
+				message "&b&lFlight enabled"
+				stop
+			if {Flight::%player's uuid%} is true:
+				set {Flight::%player's uuid%} to false
+				disable fly for player
+				message "&c&lFlight disabled"
+				stop
+		if {Staff::%player's uuid%} is "Mod":
+			if {Flight::%player's uuid%} is false:
+				set {Flight::%player's uuid%} to true
+				set {Gravity::%player's uuid%} to 0
+				allow fly for player
+				message "&b&lFlight enabled"
+				stop
+			if {Flight::%player's uuid%} is true:
+				set {Flight::%player's uuid%} to false
+				disable fly for player
+				message "&c&lFlight disabled"
+				stop
+				
+				
+				
+command /msg [<player>] [<text>]:
+    description: Whisper to another player.
+    usage: /msg <player> <message>
+    aliases: /m, /tell, /pm, /t, /whisper, /whis, /w
+    trigger:
+        if arg 1 is set:
+            if arg 2 is not set:
+                send "&8[&eKitPvP&8] &c/Msg <Player> <Message>"
+                stop
+        if arg 1 is "%player%":
+            send "&8[&eKitPvP&8] &cYou cannot message yourself!"
+            stop
+        if arg 2 is set:
+            if arg 1 is not set:
+                send "&8[&eKitPvP&8] &cPlayer is not Online or doesn't exist!"
+                stop
+        if arg 1 is not set:
+            send "&8[&eKitPvP&8] &c/Msg <Player> <Message>"
+        else:
+            send "&bMe &8&l&m|&b %arg 1% &8&l> &3%arg 2%" to player
+            send "&bFrom &8&l&m|&b %player% &8&l> &3%arg 2%" to arg 1
+            if file "PlayerProfiles/%player's uuid%/%player%/Msg.yml" doesn't exists:
+                create file "PlayerProfiles/%player's uuid%/%player%/Msg.yml"
+            wait 1 tick
+            if file "PlayerProfiles/%player's uuid%/%player%/Msg.yml" exists:
+                wf "[%now%] - (%{Kills::%player's uuid%}%) %player% >>> %arg 1% : %arg 2%" to "PlayerProfiles/%player's uuid%/%player%/Msg.yml"

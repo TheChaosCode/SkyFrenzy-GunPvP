@@ -1,0 +1,244 @@
+every 1 tick:
+	if {MysteryPackageAlive} is true:
+		wait 0 tick
+	else:
+		set {MysteryPackageAlive} to true
+		wait 5 minute
+		if {MysteryPackage} is true:
+			broadcast ""
+			broadcast " &8&l> &3Mystery Package Spawned at &bX &8&l| &b%{Loc.MB.x}% Z &8&l| &b%{Loc.MB.z}% &8&l<"
+			broadcast ""
+		if {MysteryPackage} is true:
+			set {MysteryPackageAlive} to false
+on rightclick on note block:
+	wait 1 tick
+	set event-block to air
+	set {MysteryPackage} to false
+	broadcast ""
+	broadcast " &8&l> &b&l%player% &3&opicked up the Mystery Package! &8&l<"
+	broadcast ""
+	chance of 100%:
+		add 500 to {Money::%player's uuid%}
+		chance of 40%:
+			send "&aWow you got Lucky :D &8&l> &e+$500"
+		else:
+			add 500 to {Money::%player's uuid%}
+			send "&bWow you got really Lucky :O &8&l> &e+$1,000"
+	chance of 1%:
+		add 1 to {BlueKey::%player's uuid%}
+		chance of 95%:
+			send " &8&l> &bYou have received &21x Blue Key&b! &8&l<"
+		else:
+			add 1 to {BlueKey::%player's uuid%}
+			chance of 99%:
+				send " &8&l> &bYou have received &22x Blue Key&b! &8&l<"
+			else:
+				add 1 to {BlueKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Blue Key&b! &8&l<"
+	chance of 5%:
+		add 1 to {PinkKey::%player's uuid%}
+		chance of 90%:
+			send " &8&l> &bYou have received &21x Pink Key&b! &8&l<"
+		else:
+			add 1 to {PinkKey::%player's uuid%}
+			chance of 95%:
+				send " &8&l> &bYou have received &22x Pink Key&b! &8&l<"
+			else:
+				add 1 to {PinkKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Pink Key&b! &8&l<"
+	chance of 10%:
+		add 1 to {RedKey::%player's uuid%}
+		chance of 80%:
+			send " &8&l> &bYou have received &21x Red Key&b! &8&l<"
+		else:
+			add 1 to {RedKey::%player's uuid%}
+			chance of 90%:
+				send " &8&l> &bYou have received &22x Red Key&b! &8&l<"
+			else:
+				add 1 to {RedKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Red Key&b! &8&l<"
+	chance of 20%:
+		add 1 to {YellowKey::%player's uuid%}
+		chance of 60%:
+			send " &8&l> &bYou have received &21x Yellow Key&b! &8&l<"
+		else:
+			add 1 to {YellowKey::%player's uuid%}
+			chance of 80%:
+				send " &8&l> &bYou have received &22x Yellow Key&b! &8&l<"
+			else:
+				add 1 to {YellowKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Yellow Key&b! &8&l<"
+	chance of 100%:
+		add 1 to {GreenKey::%player's uuid%}
+		chance of 20%:
+			send " &8&l> &bYou have received &21x Green Key&b! &8&l<"
+		else:
+			add 1 to {GreenKey::%player's uuid%}
+			chance of 50%:
+				send " &8&l> &bYou have received &22x Green Key&b! &8&l<"
+			else:
+				add 1 to {GreenKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Green Key&b! &8&l<"
+	send ""
+on rightclick on chest:
+	cancel the event
+	set {_Chest} to location of event-block
+	if block under event-block is 95:5:
+		if {MBP::%player's uuid%} is true:
+			stop
+		if {GreenKey::%player's uuid%} is more than 0:
+			open chest with 1 row named "&a&lStandard Mystery Box" to player
+			wait 2 tick
+			format SLOT 4 of player with chest named "&8[&a&lOpen Standard MysteryBox&8]" to close then run [set {BMystery::%player's uuid%} to false]->[make player execute command "/SMBOG"]
+		else:
+			send "&8&l> &cYou don't have enough Keys! &8&l<"
+			stop
+	else if block under event-block is 95:1:
+		if {MBP::%player's uuid%} is true:
+			stop
+		if {YellowKey::%player's uuid%} is more than 0:
+			open chest with 1 row named "&6&lUnique Mystery Box" to player
+			wait 2 tick
+			format SLOT 4 of player with chest named "&8[&6&lOpen Unique MysteryBox&8]" to close then run [set {BMystery::%player's uuid%} to false]->[make player execute command "/SMBOY"]
+		else:
+			send "&8&l> &cYou don't have enough Keys! &8&l<"
+			stop
+	else:
+		stop
+command /SMBOG:
+	trigger:
+		if {BMystery::%player's uuid%} is true:
+			Send "&8[&bKitPvP&8] &cUnknown Command."
+			stop
+		else:
+			remove 1 from {GreenKey::%player's uuid%}
+			set {BMystery::%player's uuid%} to true
+			set {MBP::%player's uuid%} to true
+			send "&8&l> &bMysteryBox is opening... &8&l<"
+			execute console command "/play sound type:portal_travel loc:Kitpvp,-22.5,72,10.5 volume:1.5 pitch:0.75"
+			loop 200 times:
+				execute console command "/play happy speed:0 loc:Kitpvp,-22.5,72,10.5 num:1 offset:0.5"
+				execute console command "/play portal loc:Kitpvp,-22.5,72,10.5 num:1 speed:1.2"
+				execute console command "/play spell loc:Kitpvp,-22.5,72,10.5 num:1 offset:5"
+				wait 1 tick
+			execute console command "/play sound type:portal_travel loc:Kitpvp,-22.5,72,10.5 volume:1.5 pitch:1.5"
+			execute console command "/play firework color:green speed:0 loc:Kitpvp,-22.5,71,10.5 draw:circle radius:1 num:1 offset:0.3 type:burst"
+			execute console command "/play sound type:Level_up loc:Kitpvp,-22.5,72,10.5 volume:2 pitch:0.5"
+			set {_Input} to 0
+			send ""
+			chance of 50%:
+				add 1000 to {_Input}
+				add 500 to {Money::%player's uuid%}
+			chance of 30%:
+				add 1000 to {_Input}
+				add 1000 to {Money::%player's uuid%}
+			chance of 10%:
+				add 3000 to {_Input}
+				add 3000 to {Money::%player's uuid%}
+			chance of 10%:
+				set {Kit.Falcon::%player's uuid%} to 1
+				send "&8&l> &bYou have unlocked kit &6Falcon &8&l<"
+			chance of 10%:
+				set {Attachment.FlameBurst::%player's uuid%} to 1
+				send "&8&l> &bYou have unlocked attachment &cFlame Burst &8&l<"
+			chance of 10%:
+				set {Attachment.HeartBomb::%player's uuid%} to 1
+				send "&8&l> &bYou have unlocked attachment &dHeart Bomb &8&l<"
+			chance of 10%:	
+				set {Perk.Counter::%player's uuid%} to 1
+				send "&8&l> &bYou have unlocked Perk &aCounter &8&l<"
+			if {_input} is 0:
+				send "&8&l> &cSrry!, you didnt get any cash &8&l<"
+			else:
+				send "&8&l> &bYou got &a$%{_input}% &8&l<"
+			send ""
+			set {MBP::%player's uuid%} to false
+command /SMBOY:
+	trigger:
+		if {BMystery::%player's uuid%} is true:
+			Send "&8[&bKitPvP&8] &cUnknown Command."
+			stop
+		else:
+			remove 1 from {YellowKey::%player's uuid%}
+			set {BMystery::%player's uuid%} to true
+			set {MBP::%player's uuid%} to true
+			send "&8&l> &bMysteryBox is opening... &8&l<"
+			execute console command "/play sound type:portal_travel loc:Kitpvp,-22.5,72,10.5 volume:1.5 pitch:0.75"
+			loop 200 times:
+				execute console command "/play happy speed:0 loc:Kitpvp,-22.5,72,10.5 num:1 offset:0.5"
+				execute console command "/play portal loc:Kitpvp,-22.5,72,10.5 num:1 speed:1.2"
+				execute console command "/play spell loc:Kitpvp,-22.5,72,10.5 num:1 offset:5"
+				chance of 3%:
+					execute console command "/play sound type:portal_travel loc:Kitpvp,-22.5,72,10.5 volume:1.5 pitch:1.5"
+				wait 1 tick
+			execute console command "/play firework color:green speed:0 loc:Kitpvp,-22.5,71,10.5 draw:circle radius:1 num:1 offset:0.3 type:burst"
+			execute console command "/play sound type:Level_up loc:Kitpvp,-22.5,72,10.5 volume:2 pitch:0.5"
+			set {_Input} to 0
+			send ""
+			chance of 70%:
+				add 1500 to {_Input}
+				add 1500 to {Money::%player's uuid%}
+			chance of 40%:
+				add 1500 to {_Input}
+				add 1500 to {Money::%player's uuid%}
+			chance of 15%:
+				add 3200 to {_Input}
+				add 3200 to {Money::%player's uuid%}
+			chance of 8%:
+				add 3200 to {_Input}
+				add 3200 to {Money::%player's uuid%}
+			chance of 20%:	
+				set {Perk.MirrorMove::%player's uuid%} to 1
+				send "&8&l> &bYou have unlocked Perk &aMirror Move &8&l<"
+			if {_input} is 0:
+				send "&8&l> &cSrry!, you didnt get any cash &8&l<"
+			else:
+				send "&8&l> &bYou got &a$%{_input}% &8&l<"
+			send ""
+			set {MBP::%player's uuid%} to false
+				
+			
+
+command /HSMB:
+	trigger:
+		if player is not "ChaosJumper8":
+			Send "&8[&bKitPvP&8] &cUnknown Command."
+			stop
+		else:
+			set {MB} to a random integer between 0 and 3
+			if {MB} is 1:
+				set {Loc.MB.x} to a random integer between -50 and 50
+				set {Loc.MB.z} to a random integer between 50 and 135
+				spawn falling block of note block at location ({Loc.MB.x}, 250, {Loc.MB.z})
+				broadcast ""
+				broadcast " &8&l> &3&lMystery Package Spawn at &bx &8&l| &b%{Loc.MB.x}% z &8&l| &b%{Loc.MB.z}% &8&l<"
+				broadcast ""
+				stop
+			else if {MB} is 2:
+				set {Loc.MB.x} to a random integer between -120 and -70
+				set {Loc.MB.z} to a random integer between -70 and 30
+				spawn falling block of note block at location ({Loc.MB.x}, 250, {Loc.MB.z})
+				broadcast ""
+				broadcast " &8&l> &3&lMystery Package Spawn at &bx &8&l| &b%{Loc.MB.x}% z &8&l| &b%{Loc.MB.z}% &8&l<"
+				broadcast ""
+				stop
+			else if {MB} is 3:
+				set {Loc.MB.x} to a random integer between -50 and 80
+				set {Loc.MB.z} to a random integer between -25 and -45
+				spawn falling block of note block at location ({Loc.MB.x}, 250, {Loc.MB.z})
+				broadcast ""
+				broadcast " &8&l> &3&lMystery Package Spawn at &bx &8&l| &b%{Loc.MB.x}% z &8&l| &b%{Loc.MB.z}% &8&l<"
+				broadcast ""
+				stop
+			else if {MB} is 0:
+				set {Loc.MB.x} to a random integer between 65 and 125
+				set {Loc.MB.z} to a random integer between -100 and 20
+				spawn falling block of note block at location ({Loc.MB.x}, 250, {Loc.MB.z})
+				broadcast ""
+				broadcast " &8&l> &3&lMystery Package Spawn at &bx &8&l| &b%{Loc.MB.x}% z &8&l| &b%{Loc.MB.z}% &8&l<"
+				broadcast ""
+				stop
+
+			
+on rightclick on ender chest:
+	cancel the event

@@ -1,0 +1,606 @@
+on rightclick using iron sword:
+	if name of the player's tool is "&8-= &3Mecha Sword &8=- &7(Right Click)":
+		set {_MechD} to difference between {MechD.%player%.lastused} and now
+		if {_MechD} is less than 30 seconds:
+			message "&3Please Wait &b%difference between 30 seconds and {_MechD}% &3till you can use &9Rocket Jump!"
+			stop
+		thrust player upwards at velocity 0.5
+		set {MechD.%player%.lastused} to now
+		wait 1 tick
+		thrust player forward at velocity 1.8
+		make player execute command "/xAbilityDelayx RocketJump"
+			wait 1 tick
+on rightclick using blaze powder:
+	if name of the player's tool is "&8-={ &4Blaze Up &8}=- &7(Right Click)":
+		set {_Pyro} to difference between {Pyro.%player%.lastused} and now
+		if {_Pyro} is less than 30 seconds:
+			message "&3Please Wait &b%difference between 30 seconds and {_Pyro}% &3till you can use &4Blaze Up!"
+			stop
+		set {Pyro.%player%.lastused} to now
+		wait 1 tick
+		message "&9You have &c&lBlazed Up!"
+		make player execute command "/xPyroSoundsx"
+		apply swiftness 2 to the player for 7 seconds
+		apply strength 2 to the player for 10 seconds
+		apply resistance 1 to the player for 7 seconds
+on rightclick using emerald:
+	if name of the player's tool is "&8-={ &2Jelly Coat &8}=- &7(Right Click)":
+		set {_Witch} to difference between {Witch.%player%.lastused} and now
+		if {_Witch} is less than 30 seconds:
+			message "&3Please Wait &b%difference between 30 seconds and {_Witch}% &3till you can use &2Jelly coat!"
+			stop
+		set {Witch.%player%.lastused} to now
+		wait 1 tick
+		message "&9You have Put on a &2&lJelly coat!"
+		apply absorption 10 to the player for 20 seconds
+		make player execute command "/xAbilityDelayx JellyCoat"
+on rightclick using paper:
+	if name of the player's tool is "&8-={ &7Invisibility Cloak &8}=- &7(Right Click)":
+		set {_Spy} to difference between {Spy.%player%.lastused} and now
+		if {_Spy} is less than 30 seconds:
+			message "&3Please Wait &b%difference between 30 seconds and {_Spy}% &3till you can use &7Invisibility Cloak!"
+			stop
+		set {Spy.%player%.lastused} to now
+		wait 1 tick
+		hide player from all players
+		message "&9You have Used your &7&lInvisibility Cloak!"
+		make player execute command "/xAbilityDelayx InvisibilityCloak"
+		loop 20 times:
+			make player execute command "/xSpyxParticlesx"
+			wait 1 tick
+		apply speed 1 to the player for 30 seconds
+		wait 20 second
+		reveal player to all players
+		message "&9You are no longer invisible!"
+on rightclick using quartz:
+	if name of the player's tool is "&8-={ &6Wings &8}=- &7(Right Click)":
+		if {SafeZone::%player's uuid%} is 1:
+			send "&6Wings&c&l is disabled in Spawn!"
+		else:
+			set {_Wings} to difference between {Wings.%player%.lastused} and now
+			if {_Wings} is less than 45 seconds:
+				message "&3Please Wait &b%difference between 45 seconds and {_Wings}% &3till you can use &6Wings!"
+				stop
+			set {Wings.%player%.lastused} to now
+			message "&9You have now been set Flying!"
+			wait 13 seconds
+			thrust player forwards at velocity 0.15
+			message "&9You are no longer Flying!"
+on rightclick using string:
+	if name of the player's tool is "&8-={ &eWhirlWind &8}=- &7(Right Click)":
+		if {SafeZone::%player's uuid%} is 1:
+			send "&6WhirlWind&c&l is disabled in Spawn!"
+		else:
+			set {_WhirlWind} to difference between {WhirlWind.%player%.lastused} and now
+			if {_WhirlWind} is less than 30 seconds:
+				message "&3Please Wait &b%difference between 30 seconds and {_WhirlWind}% &3till you can use &eWhirlWind!"
+				stop
+			set {WhirlWind.%player%.lastused} to now
+			thrust player upwards at velocity 0.5
+			loop players in radius 7 of player:
+				set {_thing} to direction from player to loop-player
+				push loop-player {_thing} at speed 2
+			loop 20 times:
+				make player execute command "/WhirlWindxParticlesx"
+				loop players in radius 7 of player:
+					set {_thing} to direction from player to loop-player
+					push loop-player {_thing} at speed 0.5
+				wait 1 tick
+on rightclick using redstone torch:
+	if name of the player's tool is "&8-={ &bGyro Wave &8}=- &7(Right Click)":
+		set {_Gyro} to difference between {Gyro.%player%.lastused} and now
+		if {_Gyro} is less than 5 seconds:
+			message "&3Please Wait &b%difference between 5 seconds and {_Gyro}% &3till you can use &bGyro Wave!"
+			stop
+		set {Gyro.%player%.lastused} to now
+		loop 300 times:
+			make player execute command "/GyroxParticlesx"
+			loop players in radius 12 of player:
+				set {_rthing} to direction from loop-player to player
+				push loop-player {_rthing} at speed 0.03
+				push loop-player upwards at speed 0.04
+			loop players in radius 2 of player:
+				apply blindness 1 to the loop-player for 1 seconds
+				apply wither 5 to the loop-player for 1 seconds
+				set {_thing} to direction from player to loop-player
+				push loop-player {_thing} at speed 1
+				push loop-player upwards at speed 0.5
+			wait 1 tick
+on rightclick using magma cream:
+	if name of the player's tool is "&8-={ &4&oScorch Up &8}=- &7(Right Click)":
+		set {_Scorch} to difference between {Scorch.%player%.lastused} and now
+		if {_Scorch} is less than 45 seconds:
+			message "&3Please Wait &b%difference between 45 seconds and {_Scorch}% &3till you can use &4&oScorch Up!"
+			stop
+		set {Scorch.%player%.lastused} to now
+		wait 1 tick
+		message "&9You have &4&oScorch Up!"
+		make player execute command "/xPyroSoundsx"
+		apply strength 2 to the player for 12 seconds
+		apply resistance 2 to the player for 12 seconds
+		make player execute command "/xAbilityDelayx ScorchUp"
+		loop 20 times:
+			make player execute command "/xPyroflamesx"
+			make player execute command "/xPyroManiacxParticlesx"
+			loop players in radius 7 of player:
+				ignite the loop-player
+			wait 1 tick
+on rightclick using note block:
+	if name of the player's tool is "&8-={ &f&lSound Wave &8}=- &7(Right Click)":
+		set {_Sound} to difference between {Sound.%player%.lastused} and now
+		if {_Sound} is less than 30 seconds:
+			message "&3Please Wait &b%difference between 30 seconds and {_Sound}% &3till you can use &f&lSound!"
+			stop
+		set {Sound.%player%.lastused} to now
+		set {_SoundDistance.%player%} to 1
+		wait 1 tick
+		message "&9You have used &f&lSound Wave!"
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:1 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:1 pitch:0.5 volume:0.7loc:here"
+		loop players in radius 1 of player:
+			apply night vision 2 to the loop-player for 3 seconds
+			apply blindness 1 to the loop-player for 3 seconds
+			apply nausea 2 to the loop-player for 3 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:2 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:2 pitch:0.6 volume:0.7 loc:here"
+		loop players in radius 2 of player:
+			apply night vision 2 to the loop-player for 3 seconds
+			apply blindness 1 to the loop-player for 3 seconds
+			apply nausea 2 to the loop-player for 3 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:3 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:3 pitch:0.7 volume:0.7 loc:here"
+		loop players in radius 3 of player:
+			apply night vision 2 to the loop-player for 1 seconds
+			apply blindness 1 to the loop-player for 1 seconds
+			apply nausea 2 to the loop-player for 1 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:4 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:4 pitch:0.8 volume:0.7 loc:here"
+		loop players in radius 4 of player:
+			apply blindness 1 to the loop-player for 1 seconds
+			apply nausea 2 to the loop-player for 1 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:5 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:5 pitch:0.9 volume:0.7 loc:here"
+		loop players in radius 5 of player:
+			apply blindness 1 to the loop-player for 1 seconds
+			apply nausea 2 to the loop-player for 1 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:6 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:6 pitch:1.05 volume:0.7 loc:here"
+		loop players in radius 6 of player:
+			apply blindness 1 to the loop-player for 1 seconds
+			apply nausea 2 to the loop-player for 1 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:7 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:7 pitch:1.2 volume:0.7 loc:here"
+		loop players in radius 7 of player:
+			apply blindness 1 to the loop-player for 1 seconds
+			apply nausea 2 to the loop-player for 1 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:8 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:8 pitch:1.3 volume:0.7 loc:here"
+		loop players in radius 8 of player:
+			apply blindness 1 to the loop-player for 1 seconds
+			apply nausea 2 to the loop-player for 1 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:9 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:9 pitch:1.4 volume:0.7 loc:here"
+		loop players in radius 9 of player:
+			apply blindness 1 to the loop-player for 1 seconds
+			apply nausea 2 to the loop-player for 1 seconds
+		deop the player
+		wait 3 tick
+		op the player
+		make player execute command "/play note loc:here draw:circle radius:10 offset:0.3 num:3"
+		make player execute command "/play sound type:note_pling draw:circle radius:10 pitch:1.5 volume:0.7 loc:here"
+		loop players in radius 10 of player:
+			apply blindness 1 to the loop-player for 1 seconds
+			apply nausea 2 to the loop-player for 1 seconds
+		deop the player
+on rightclick using seeds:
+	if name of the player's tool is "&8-={ &aPoppy Seeds &8}=- &7(Right Click)":
+		set {_PS} to difference between {PS.%player%.lastused} and now
+		if {_PS} is less than 45 seconds:
+			message "&3Please Wait &b%difference between 45 seconds and {_PS}% &3till you can use &aPoppy Seeds!"
+			stop
+		set {PS.%player%.lastused} to now
+		wait 1 tick
+		message "&9You have Eaten &aPoppy Seeds!"
+		set {DM::%player's uuid%} to 2
+		loop 20 times:
+			make player execute command "/xWitchParticlesx"
+			wait 1 tick
+		wait 14 second
+		set {DM::%player's uuid%} to 1
+		message "&aPoppy Seeds!&9 Have worn off!"
+on rightclick using leather boots:
+	if name of the player's tool is "&8-={ &6Ninjump &8}=- &7(Right Click)":
+		if {Ninjump::%player's uuid%} is 1:
+			set {_NJ} to difference between {NJ.%player%.lastused} and now
+			set {NJ.%player%.lastused} to now
+			set action bar of player to "&bYou have Ninjumped!"
+			thrust player forwards at velocity 0.5
+			thrust player upwards at velocity 0.3
+			set player's walk speed to 0.2
+			wait 1 second
+			if {Ninjump::%player's uuid%} is 0:
+				stop
+			else:
+				set {Ninjump::%player's uuid%} to 0
+			stop
+		if {Ninjump::%player's uuid%} is 0:
+			set {_NJ} to difference between {NJ.%player%.lastused} and now
+			if {_NJ} is less than 15 seconds:
+				set action bar of player to "&3Please Wait &b%difference between 15 seconds and {_NJ}% &3till you can use &6NinJump!"
+				stop
+			message "&3Getting ready to jump..."
+			set player's walk speed to 0.15
+			set {Ninjump::%player's uuid%} to 1
+			stop
+		else:			
+			set {Ninjump::%player's uuid%} to 1
+			stop
+on rightclick using bone meal:
+	if name of the player's tool is "&8-={ &7Cloud Forcefield &8}=- &7(Right Click)":
+		set {_CF} to difference between {CF.%player%.lastused} and now
+		if {_CF} is less than 60 seconds:
+			set action bar of player to "&3Please Wait &b%difference between 60 seconds and {_CF}% &3till you can use &7Cloud ForceField"
+			stop
+		set {CF.%player%.lastused} to now
+		wait 1 tick
+		message "&9You Have Activated your &7CloudForcefield"
+		set {CloudF::%player's uuid%} to "On"
+		loop 500 times:
+			wait 1 tick
+			loop players in radius 5 of player:
+				apply nausea 2 to the loop-player for 0.12 seconds
+				apply weakness 3 to the loop-player for 0.12 seconds
+				apply slow digging 10 to the loop-player for 0.2 seconds
+			loop players in radius 1 of player:
+				apply nausea 2 to the loop-player for 0.3 seconds
+				apply weakness 5 to the loop-player for 0.3 seconds
+				apply slow digging 20 to the loop-player for 0.5 seconds
+				apply slowness 2 to the loop-player for 0.3 seconds
+		set {CloudF::%player's uuid%} to "off"
+		message "&7CloudForcefield &9has Worn off!"
+on rightclick using iron sword:
+	if name of the player's tool is "&8-= &7Cloud Vortex Sword &8=- &7(Right Click)":
+		if {SafeZone::%player's uuid%} is 1:
+			send "&7Vortex&c&l is disabled in Spawn!"
+		else:
+			set {_CVS} to difference between {CVS.%player%.lastused} and now
+			if {_CVS} is less than 60 seconds:
+				set action bar of player to "&3Please Wait &b%difference between 60 seconds and {_CVS}% &3till you can use &7Vortex"
+				stop
+			thrust player upwards at velocity 1
+			set {CVS.%player%.lastused} to now
+			set {CloudV::%player's uuid%} to "On"
+			loop 28 times:
+				wait 5 tick
+				if {SafeZone::%player's uuid%} is 1:
+					wait 0 tick
+				else:
+					loop players in radius 12 of player:
+						if {SafeZone::%loop-player's uuid%} is 1:
+							wait 0 tick
+						else:
+							set {_rthing} to direction from loop-player to player
+							push loop-player {_rthing} at speed 1.3
+							push loop-player upwards at speed 0.3
+							apply blindness 1 to the loop-player for 0.7 seconds
+					loop players in radius 3 of player:
+						if {SafeZone::%loop-player's uuid%} is 1:
+							wait 0 tick
+						else:
+							set {_rthing} to direction from player to loop-player
+							push loop-player {_rthing} at speed 0.7
+							apply weakness 1 to the loop-player for 2 seconds
+							apply slow digging 3 to the loop-player for 3 seconds
+					loop players in radius 1 of player:
+						if {SafeZone::%loop-player's uuid%} is 1:
+							wait 0 tick
+						else:
+							set {_rthing} to direction from player to loop-player
+							push loop-player {_rthing} at speed 3
+							apply nausea 1 to the loop-player for 2 seconds
+							apply weakness 1 to the loop-player for 3 seconds
+							apply slow digging 3 to the loop-player for 3 seconds
+			set {CloudV::%player's uuid%} to "Off"
+			message "&9The &7Vortex &9has Vanished!"
+on rightclick using beacon:
+	if name of the player's tool is "&8-={ &bIce Trap &8}=- &7(Right Click)":
+		set {_IceTrap} to difference between {IceTrap.%player%.lastused} and now
+		if {_IceTrap} is less than 60 seconds:
+			set action bar of player to "&3Please Wait &b%difference between 60 seconds and {_IceTrap}% &3till you can use &bIce Trap"
+			stop
+		set {IceTrap.%player%.lastused} to now
+		wait 1 tick
+		message "&9You Have Activated your &bIce Trap"
+		set {_IWave} to 10
+		loop 5 times:
+			op the player
+			make player execute command "/play snow_shovel loc:here draw:circle radius:%{_IWave}% offset:0.3 num:10"
+			deop the player
+			remove 2 from {_IWave}
+			wait 15 tick
+		loop players in radius 10 of player:
+			if {SafeZone::%loop-player's uuid%} is 1:
+				wait 0 tick
+			else:
+				set {ITrap::%loop-player's uuid%} to 6
+				push loop-player downwards at speed 5
+				push loop-player downwards at speed 5
+on rightclick using firework star:
+	if name of the player's tool is "&8-={ &7Moon Orb &8}=- &7(Right Click)":
+		set {_MoonO} to difference between {MoonO.%player%.lastused} and now
+		if {_MoonO} is less than 120 seconds:
+			set action bar of player to "&3Please Wait &b%difference between 120 seconds and {_MoonO}% &3till you can use &7Moon Orb"
+			stop
+		set {MoonO.%player%.lastused} to now
+		wait 1 tick
+		loop 180 times:
+			wait 5 tick
+			op the player
+			make player execute command "/play reddust offset:5 num:50 loc:here speed:0.01"
+			deop the player
+			loop players in radius 10 of player:
+				if {SafeZone::%loop-player's uuid%} is 1:
+					wait 0 tick
+				else:
+					add 1 to {Gravity::%loop-player's uuid%}
+					apply nausea 1 to the loop-player for 0.5 seconds
+		set action bar of player to "&9&lMoon Orb wore off!"
+on rightclick using eye of ender:
+	if name of the player's tool is "&8-={ &5Teleport &8}=- &7(Right Click)":
+		cancel the event
+		set {_EnderT} to difference between {EnderT.%player%.lastused} and now
+		if {_EnderT} is less than 10 seconds:
+			set action bar of player to "&3Please Wait &b%difference between 10 seconds and {_EnderT}% &3till you can use &5Teleport"
+			stop
+		wait 1 tick
+		set {EnderT.%player%.loc} to location of targeted block
+		distance between the player and {EnderT.%player%.loc} is larger than 50:
+			set action bar of player to "&c&lTarget is too far away! Try somewhere closer."
+			stop
+		distance between the player and {EnderT.%player%.loc} is smaller than 50:
+			if block above {EnderT.%player%.loc} is air:
+				if block 2 meters above {EnderT.%player%.loc} is air:
+					set {EnderT.%player%.lastused} to now
+					op the player
+					make player execute command "/play ender_signal num:2 draw:circle radius:1 loc:here"
+					teleport player 1 meters above {EnderT.%player%.loc}
+					make player execute command "/play ender_signal num:2 draw:circle radius:1 loc:here"
+					deop the player
+				else:
+					set action bar of player to "&c&lYou Cannot Teleport! Something is Blocking the way!"
+			else:
+				set action bar of player to "&c&lYou Cannot Teleport! Something is Blocking the way!"
+		set action bar of player to "&5&lYou have Teleported!"
+on rightclick using golden carrot:
+	if name of the player's tool is "&8-={ &6&lBrave Bird Attack &8}=- &7(Right Click)":
+		if {SafeZone::%player's uuid%} is 1:
+			send "&6You cannot use this here!"
+		else:
+			set {_BBA} to difference between {BBA.%player%.lastused} and now
+			if {_BBA} is less than 5 seconds:
+				set action bar of player to "&3Please Wait &b%difference between 5 seconds and {_BBA}% &3till you can use &6Brave Bird Attack"
+				stop
+			set {BBA.%player%.lastused} to now
+			thrust player upwards at velocity 0.4
+			thrust player forwards at velocity 1.2
+			loop 25 times:
+				set {_x} to x-coordinate of player
+				set {_y} to rounded y-coordinate of player
+				set {_z} to z-coordinate of player
+				if {God::%player's uuid%} is 1:
+					stop
+				execute console command "/play cloud speed:0.15 loc:Main,%{_x}%,%{_y}%,%{_z}% num:7 offset:0.25"
+				execute console command "/play flame speed:0.1 loc:Main,%{_x}%,%{_y}%,%{_z}% num:5 offset:0.18"
+				loop players in radius 1.3 of player:
+					if {SafeZone::%loop-player's uuid%} is 1:
+						//do nothing
+					else:
+						set {_thing} to direction from loop-player to player
+						push player {_thing} at speed 0.8
+						set {Attacker::%loop-player's uuid%} to "%player%"
+						damage the loop-player by 3.5 hearts
+				wait 1 tick
+on rightclick using quartz:
+	if name of the player's tool is "&8-={ &6&lFalconLover Wings &8}=- &7(Right Click)":
+		if {SafeZone::%player's uuid%} is 1:
+			send "&6You cannot use this here!"
+		else:
+			set {_FWing} to difference between {FWing.%player%.lastused} and now
+			if {_FWing} is less than 60 seconds:
+				set action bar of player to "&3Please Wait &b%difference between 60 seconds and {_FWing}% &3till you can use &6FalconLover Wings"
+				stop
+			set {FWing.%player%.lastused} to now
+			message "&9You have now been set Flying!"
+			loop 180 times:
+				wait 1 tick
+				set {_x} to x-coordinate of player
+				set {_y} to rounded y-coordinate of player
+				set {_z} to z-coordinate of player
+				if {God::%player's uuid%} is 1:
+					stop
+				execute console command "/play cloud speed:0.15 loc:Main,%{_x}%,%{_y}%,%{_z}% num:7 offset:0.25"
+				execute console command "/play flame speed:0 loc:Main,%{_x}%,%{_y}%,%{_z}% num:5 offset:0.1"
+				thrust player forwards at velocity 0.18
+				loop players in radius 2 of player:
+					ignite the loop-player
+			message "&9You are no longer Flying!"
+on rightclick using fire charge:
+	if name of the player's tool is "&8-={ &cFlame Burst &8}=- &7(Right Click)":
+		set {_FBurst} to difference between {FBurst.%player%.lastused} and now
+		if {_FBurst} is less than 3 seconds:
+			set action bar of player to "&3Please Wait &b%difference between 3 seconds and {_FBurst}% &3till you can use &cFlame Burst"
+			stop
+		set {FBurst.%player%.lastused} to now
+		set {player.%player%.loc} to location of targeted block
+		set {_x} to x-coordinate of {player.%player%.loc}
+		set {_y} to y-coordinate of {player.%player%.loc}
+		set {_z} to z-coordinate of {player.%player%.loc}
+		
+		set {_Ax} to 0
+		set {_Ay} to 0
+		set {_Az} to 0
+		
+		set {_Px} to x-coordinate of player
+		set {_Py} to y-coordinate of player
+		set {_Pz} to z-coordinate of player
+		
+		set {_Ax} to {_x} - {_Px}
+		set {_Ay} to {_y} - {_Py}
+		set {_Az} to {_z} - {_Pz}
+		
+		set {_Ax} to {_Ax} / 100
+		set {_Ay} to {_Ay} / 100
+		set {_Az} to {_Az} / 100
+		
+		set {_Px} to {_Px}
+		set {_Py} to {_Py} + 0.7
+		set {_Pz} to {_Pz}
+		
+		set {_A} to 2
+		
+		set {_BLoc} to location of {player.%player%.loc}
+		loop 100 times:
+			if {God::%player's uuid%} is 1:
+				stop
+			execute console command "/particle flame %{_Px} + {_Ax}% %{_Py} + {_Ay}% %{_Pz} - {_Az}% 0.12 0.12 0.12 0.01 20 1"
+			set {_Px} to {_Px} + ({_Ax} * {_A})
+			set {_Py} to {_Py} + ({_Ay} * {_A})
+			set {_Pz} to {_Pz} + ({_Az} * {_A})
+			set x coordinate of {_BLoc} to {_Px}
+			set y coordinate of {_BLoc} to {_Py}
+			set z coordinate of {_BLoc} to {_Pz}
+			add 0.2 to {_A}
+			loop all players:
+				distance between the loop-player and {_BLoc} is less than 1.7:
+					loop-player is not the player:
+						if {SafeZone::%loop-player's uuid%} is 1:
+							//do nothing
+						else if {God::%loop-player's uuid%} is 1:
+							//do nothing
+						else if {Kit::%loop-player's uuid%} is "None":
+							//do nothing
+						else:
+							set {Attacker::%loop-player's uuid%} to the player
+							damage the loop-player by 14 hearts
+							set {_thing} to direction from {_BLoc} to loop-player
+							push loop-player {_thing} at speed 0.5
+							execute console command "/play firework color:red type:burst draw:circle radius:1 loc:Main,%{_Px}%,%{_Py}%,%{_Pz}%"
+							loop 3 times:
+								execute console command "/play explosion_huge offset:1 loc:Main,%{_Px}%,%{_Py}%,%{_Pz}%"
+							create a safe explosion of force 0.1 at {_BLoc}
+							stop
+			loop blocks in radius 0.5 around {_BLoc}:
+				loop-block is not air:
+					loop players in radius 3 of {_BLoc}:
+						if {SafeZone::%loop-player's uuid%} is 1:
+							//do nothing
+						else if {God::%loop-player's uuid%} is 1:
+							//do nothing
+						else if {Kit::%loop-player's uuid%} is "None":
+							//do nothing
+						else:
+							set {Attacker::%loop-player's uuid%} to player
+							damage the loop-player by 10 hearts
+							set {_thing} to direction from {_BLoc} to loop-player
+							push loop-player {_thing} at speed 0.5
+					execute console command "/play firework color:red type:burst draw:circle radius:1 loc:Main,%{_Px}%,%{_Py}%,%{_Pz}%"
+					loop 3 times:
+						execute console command "/play explosion_huge offset:1 loc:Main,%{_Px}%,%{_Py}%,%{_Pz}%"
+					create a safe explosion of force 0.1 at {_BLoc}
+					stop
+			wait 0.5 tick
+on rightclick using tnt:
+	if name of the player's tool is "&8-={ &dHeart Bomb &8}=- &7(Right Click)":
+		if {SafeZone::%player's uuid%} is 1:
+			send "&6You cannot use this here!"
+		else:
+			set {_HBomb} to difference between {HBomb.%player%.lastused} and now
+			if {_HBomb} is less than 10 seconds:
+				set action bar of player to "&3Please Wait &b%difference between 10 seconds and {_HBomb}% &3till you can use &dHeart Bomb"
+				stop
+			set {HBomb.%player%.lastused} to now
+			set {_x} to x-coordinate of player
+			set {_y} to rounded y-coordinate of player
+			set {_z} to z-coordinate of player
+			execute console command "/play sound type:portal_trigger loc:Main,%{_x}%,%{_y}%,%{_z}% pitch:1.5 volume:3"
+			loop 60 times:
+				set {_x} to x-coordinate of player
+				set {_y} to rounded y-coordinate of player
+				set {_z} to z-coordinate of player
+				execute console command "/play ender_signal loc:Main,%{_x}%,%{_y}%,%{_z}%"
+				execute console command "/play lava loc:Main,%{_x}%,%{_y}%,%{_z}% offset:2 num:2"
+				wait 1 tick
+			execute console command "/play firework type:ball_large color:Pink loc:Main,%{_x}%,%{_y}%,%{_z}%"
+			set {Attacker::%player's uuid%} to the player
+			damage the player by rounded health of player / 2 hearts
+			push player upwards at speed 0.5
+			loop players in radius 5 of player:
+				if {SafeZone::%loop-player's uuid%} is 1:
+					//do nothing
+				else if {God::%loop-player's uuid%} is 1:
+					//do nothing
+				else if {Kit::%loop-player's uuid%} is "None":
+					//do nothing
+				else:
+					set {Attacker::%loop-player's uuid%} to the player
+					damage the loop-player by rounded health of loop-player - 1 hearts
+					set {_thing} to direction from player to loop-player
+					push loop-player {_thing} at speed 1
+					send "&8&l> &4&l%player% &cSelfDestruct! &8&l<" to loop-player
+			loop 3 times:
+				execute console command "/play explosion_large offset:5 loc:Main,%{_x}%,%{_y}%,%{_z}%"
+				wait 1 tick
+			
+			
+command /Poppy:
+	trigger:
+		give 1 seeds named "&8-={ &aPoppy Seeds &8}=- &7(Right Click)" with lore "&7Seeds that Cut all damage in half||&7for 15 seconds" to player
+command /Sharpen:
+	trigger:
+		enchant the player's tool with sharpness 10
+every 1 ticks:
+	loop all players:
+		if loop-Player is holding iron sword:
+			if name of the loop-player's tool is "&8-={ &7Cloud Vortex Sword &8}=- &7(Right Click)":
+		if {CloudF::%loop-player's uuid%} is "On":
+			op the loop-player
+			make loop-player execute command "/play cloud offset:5 num:50 loc:here"
+			deop the loop-player
+		if {CloudV::%loop-player's uuid%} is "On":
+			op the loop-player
+			make loop-player execute command "/play cloud offset:7 num:50 loc:here"
+			deop the loop-player
+		if {ITrap::%loop-player's uuid%} is more than 0:
+			remove 0.05 from {ITrap::%loop-player's uuid%}
+		if {Gravity::%loop-player's uuid%} is more than 0:
+			push loop-player upwards at speed 0.05
+			remove 0.05 from {Gravity::%loop-player's uuid%}
+on any move:
+	if {ITrap::%player's uuid%} is more than 0:
+		chance of 50%:
+			cancel event	

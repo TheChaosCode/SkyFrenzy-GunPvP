@@ -1,0 +1,81 @@
+on rightclick on entity:
+	entity is villager:
+		if "%entity's name%" is "&8&l-={ &b&lKits &8&l}=-":
+			cancel the event
+			make player execute command "/KitsSelection"
+		if "%entity's name%" is "&8&l-={ &b&lShop &8&l}=-":
+			cancel the event
+			make player execute command "/Shop"
+command /npc [<text>]:
+	usage: /npc [villager]
+	trigger:
+		if arg 1 is not set:
+			send "&8[&bKitPvP&8] &c/npc [kits, Worlds, Help]"
+			stop
+		if arg 1 is "kits":
+			if {Npc.Kits} is true:
+				send "&8[&bKitPvP&8] &cNpc has alreay been made!"
+				stop
+			set {_Npc.Kits.loc} to location of player
+			spawn a villager at {_Npc.Kits.loc}
+			set spawned entity's display name to "&8&l-={ &b&lKits &8&l}=-"
+			set yaw of spawned entity to yaw of player
+			set pitch of spawned entity to pitch of player
+			set no ai state of event-entity to true
+			apply slow 150 to the spawned entity for 99999999999999999999999999999999999999999999999999999999 seconds
+			set {Npc.Kits} to true
+			while {NPC.kits} is true:
+				wait 1 tick
+				if name of spawned entity contains "Kits":
+					if spawned entity is alive:
+						distance between the spawned entity and {_Npc.Kits.loc} is larger than 0.01:
+							teleport spawned entity to {_Npc.Kits.loc}
+						loop players in radius 2 around spawned entity:
+							set {_npcPushkits} to direction from spawned entity to loop-player
+							push loop-player {_npcPushkits} at speed 0.1
+					else:
+						exit loop
+		else if arg 1 is "Shop":
+			if {Npc.shop} is true:
+				send "&8[&bKitPvP&8] &cNpc has alreay been made!"
+				stop
+			set {_Npc.Shop.loc} to location of player
+			spawn a villager at {_Npc.Shop.loc}
+			set spawned entity's display name to "&8&l-={ &b&lShop &8&l}=-"
+			set yaw of spawned entity to yaw of player
+			set pitch of spawned entity to pitch of player
+			set no ai state of event-entity to true
+			apply slow 150 to the spawned entity for 99999999999999999999999999999999999999999999999999999999 seconds
+			set {Npc.Shop} to true
+			while {NPC.shop} is true:
+				wait 1 tick
+				if name of spawned entity contains "Shop":
+					if spawned entity is alive:
+						distance between the spawned entity and {_Npc.Shop.loc} is larger than 0.01:
+							teleport spawned entity to {_Npc.Shop.loc}
+						loop players in radius 2 around spawned entity:
+							set {_npcPushshop} to direction from spawned entity to loop-player
+							push loop-player {_npcPushshop} at speed 0.1
+					else:
+						exit loop
+		else:
+			send "&8[&bKitPvP&8] &cInvalid input."
+			stop
+command /dnpc:
+	usage: /dnpc
+	trigger:
+		if {NpcA} is true:
+			send "&8[&bKitPvP&8] &cyou can no longer kill npc's"
+			set {NpcA} to false
+		else:
+			send "&8[&bKitPvP&8] &2you can now kill npc's"
+			set {NpcA} to true
+on damage of villager:
+	if {NpcA} is true:
+		if attacker is op:
+			kill victim
+			set {Npc.Kits} to false
+			set {Npc.Shop} to false
+	else:
+		cancel the event
+		

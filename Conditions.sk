@@ -1,0 +1,50 @@
+every 1 ticks:
+	loop all players:
+		if loop-player's world is "Main":
+			loop-player's altitude is less than 0
+			if {God::%loop-player's uuid%} is 1:
+				push loop-player upwards at speed 0.08
+			else:
+				if {Attacker::%loop-player's uuid%} is "None":
+					set {Attacker::%loop-player's uuid%} to loop-player
+				damage loop-player by 100000
+every 1 ticks:
+	loop all players:
+		if {Kit::%loop-player's uuid%} is "Astronomist":
+			set helmet of loop-player to 95:8
+on xp spawn:
+	cancel event
+on inventory click:
+	if {Kit::%player's uuid%} is "None":
+		cancel the event
+on drop:
+	cancel event
+on hunger bar change:
+	cancel event
+every 20 ticks:
+	loop all players:
+		set {_Regen} to loop-player's location
+		wait 20 tick
+		if loop-player's location isn't {_Regen}:
+			set {Regen::%loop-player's uuid%} to 0
+		else:
+			add 0.2 to {Regen::%loop-player's uuid%}
+every 5 ticks:
+	loop all players:
+		add 100 to the hunger bar of the loop-player
+		heal the loop-player by {Regen::%loop-player's uuid%} hearts
+every 15 ticks:
+	loop all players:
+		heal the loop-player by 0.5 hearts
+on rightclick using stick:
+	loop players in radius 5 of player:
+		damage loop-player by 10
+on rightclick on snowball:
+	cancel the event
+	
+on break:
+	player is not an op
+	cancel event
+on place:
+	player is not an op
+	cancel event

@@ -1,0 +1,219 @@
+on death of a player:
+	add 1 to {Deaths::%player's uuid%}
+	add 1 to {Online.Deaths.Session::%player's uuid%}
+	clear the player's inventory
+	set {KillStreak.Session::%player's uuid%} to 0
+	set {Kit::%player's uuid%} to "None"
+	set {God::%player's uuid%} to 1
+	execute console command "/gamemode 3 %player%"
+	heal victim
+	thrust player upwards at velocity 1
+	allow fly for player
+	
+	set {_Attacker} to "%{Attacker::%victim's uuid%}%" parsed as player
+	set {_Attacker.health} to health of {_Attacker}
+	set {_Attacker.uuid} to {_Attacker}'s uuid
+	message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &7&lDeath &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to the victim
+	message "" to the victim
+	if {_Attacker} is victim:
+		message "   &4&lSuicide! &c&l> &4&o&l-$200" to the victim
+		remove 250 from {Money::%victim's uuid%}
+	else if {_Attacker} is not a player:
+		message "   &4&lYou Have Died" to the victim
+	else if {_Attacker} is a player:
+		message "   &c&l%{_Attacker}% &4&lKilled you!" to the victim
+		message "" to the victim
+		message "   &c&lHP &8&l&m|&e  %{_Attacker.health}%" to the victim
+		message "" to the victim
+		message "   &c&lKit &8&l&m|&e  %{Kit::%{_Attacker.uuid}%}%" to the victim
+	if {Deaths::%player's uuid%} is 1:
+		add 200 to {Money::%player's uuid%}
+		message "" to the victim
+		message "   &2Achievement &9baby Soul! &7(&a&oComplete!&7)" to the victim
+		message "   &7Reward &8&l| &e&o+$200" to the victim
+	message "" to the victim
+	message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &7&l&m-===-&r &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to the victim
+
+	if {_Attacker} is a player:
+		if {_Attacker} is Online:
+			if {_Attacker} is not the victim:
+				add 1 to {Kills::%{_Attacker.uuid}%}
+				add 1 to {Online.Kills.Session::%{_Attacker.uuid}%}
+				add 1 to {KillStreak.Session::%{_Attacker.uuid}%}
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 5:
+					add 1 to {KillStreak.5::%{_Attacker.uuid}%}
+					broadcast "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &c&lKillStreak &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+					broadcast ""
+					broadcast "   &9&l%{_Attacker}% &3has reached a Killstreak of &b5&3!"
+					broadcast ""
+					broadcast "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &c&l&m-======-&r &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 10:
+					add 1 to {KillStreak.10::%{_Attacker.uuid}%}
+					broadcast "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &c&lKillStreak &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+					broadcast ""
+					broadcast "   &9&l%{_Attacker}% &3has reached a Awesome Killstreak of &b10&3!"
+					broadcast ""
+					broadcast "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &c&l&m-======-&r &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 15:
+					add 1 to {KillStreak.15::%{_Attacker.uuid}%}
+					broadcast "&8&l&m-={&r &c&l&m=&r &8&l&m}=---=&8&l[ &c&lKillStreak &8&l]&8&l&m=---={&r &c&l&m=&r &8&l&m}=-"
+					broadcast ""
+					broadcast "   &9&l%{_Attacker}% &3has reached a Insane Killstreak of &b&l15&3!"
+					broadcast ""
+					broadcast "&8&l&m-={&r &c&l&m=&r &8&l&m}=---=&8&l[ &c&l&m-======-&r &8&l]&8&l&m=---={&r &c&l&m=&r &8&l&m}=-"
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 20:
+					add 1 to {KillStreak.20::%{_Attacker.uuid}%}
+					broadcast "&8&l&m-={&r &c&l&m=&r &8&l&m}=---=&8&l[ &c&lKillStreak &8&l]&8&l&m=---={&r &c&l&m=&r &8&l&m}=-"
+					broadcast ""
+					broadcast "   &9&l%{_Attacker}% &3has reached an Incredible Killstreak of &b&l20&3!"
+					broadcast ""
+					broadcast "&8&l&m-={&r &c&l&m=&r &8&l&m}=---=&8&l[ &c&l&m-======-&r &8&l]&8&l&m=---={&r &c&l&m=&r &8&l&m}=-"
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 25:
+					add 1 to {KillStreak.25::%{_Attacker.uuid}%}
+					broadcast "&8&l&m-={&r &c&l&m=&r &8&l&m}=---=&8&l[ &c&lKillStreak &8&l]&8&l&m=---={&r &c&l&m=&r &8&l&m}=-"
+					broadcast ""
+					broadcast "   &9&l%{_Attacker}% &3has a Killstreak of &b&l25&3! &3Someone Kill him :D"
+					broadcast ""
+					broadcast "&8&l&m-={&r &c&l&m=&r &8&l&m}=---=&8&l[ &c&l&m-======-&r &8&l]&8&l&m=---={&r &c&l&m=&r &8&l&m}=-"
+					message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &3&lKill &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to {_Attacker}
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 5:
+					message "" to {_Attacker}
+					message "   &3&oYou are on a Killstreak of &b5&3&o!" to {_Attacker}
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 10:
+					message "" to {_Attacker}
+					message "   &3&oYou are on a Killstreak of &b10&3&o!" to {_Attacker}
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 15:
+					message "" to {_Attacker}
+					message "   &3&oYou are on a Killstreak of &b&l15&3&o!" to {_Attacker}
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 20:
+					message "" to {_Attacker}
+					message "   &3&oYou are on a Killstreak of &b&l20&3&o!" to {_Attacker}
+				if {KillStreak.Session::%{_Attacker.uuid}%} is 25:
+					message "" to {_Attacker}
+					message "   &3&oYou are on a Killstreak of &b&l25&3&o!" to {_Attacker}
+					message "" to {_Attacker}
+				if {Donor::%{_Attacker.uuid}%} is "None":
+					add 50 to {Money::%{_Attacker.uuid}%}
+					message "   &9&lLevel up! &8&l> &9&l+ $50" to {_Attacker}
+				else if {Donor::%{_Attacker.uuid}%} is "Vexo":
+					add 100 to {Money::%{_Attacker.uuid}%}
+					message "   &9&lLevel up! &8&l> &9&l+ $100 &8[&eDonor&8]" to {_Attacker}
+				if {Perk::%{_Attacker.uuid}%} is "Mugger":
+					chance of 70%:
+						add 20 to {Money::%{_Attacker.uuid}%}
+						chance of 70%:
+							message "&8&l> &3Mugged &e$20 &3from &b%victim% &8&l<" to {_Attacker}
+						else:
+							add 30 to {Money::%{_Attacker.uuid}%}
+							chance of 85%:
+								message "&8&l> &3Mugged &e$50 &3from &b%victim% &8&l<" to {_Attacker}
+							else:
+								add 50 to {Money::%{_Attacker.uuid}%}
+								chance of 100%:
+									message "&8&l> &3Mugged &e$100 &3from &b%victim% &8&l<" to {_Attacker}							
+				if {Kills::%{_Attacker.uuid}%} is 1:
+					add 200 to {Money::%{_Attacker.uuid}%}
+					message "" to {_Attacker}
+					message "   &2Achievement &9First Blood! &7(&a&oComplete!&7)" to {_Attacker}
+					message "   &7Reward &8&l| &e&o+$200" to {_Attacker}
+				if {KillStreak.5::%{_Attacker.uuid}%} is 1:
+					add 1 to {KillStreak.5::%{_Attacker.uuid}%}
+					add 250 to {Money::%{_Attacker.uuid}%}
+					message "" to {_Attacker}
+					message "   &2Achievement &9BloodBaller! &7(&a&oComplete!&7)" to {_Attacker}
+					message "   &7Reward &8&l| &e&o+$250" to {_Attacker}		
+				if {Kills::%{_Attacker.uuid}%} is 10:
+					set {Rank::%{_Attacker.uuid}%} to 1
+					message "" to {_Attacker}
+					message "   &9&lYou Have Ranked Up!" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oKits Samurai and Viper" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 30:
+					set {Rank::%{_Attacker.uuid}%} to 2
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oKits Gunner and Ranger" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 60:
+					set {Rank::%{_Attacker.uuid}%} to 3
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oKits Medic and Pyro" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 100:
+					set {Rank::%{_Attacker.uuid}%} to 4
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oKits Witcher and Kamakaze" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 150:
+					set {Rank::%{_Attacker.uuid}%} to 5
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oKits Atonic and Yeti" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 250:
+					set {Rank::%{_Attacker.uuid}%} to 6
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oKits Spy and Heavy2" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 400:
+					set {Rank::%{_Attacker.uuid}%} to 7
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oKits Soldier2 and PyroManiac" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 600:
+					set {Rank::%{_Attacker.uuid}%} to 8
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oKits Assassin and Demolition" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 1000:
+					set {Rank::%{_Attacker.uuid}%} to 9
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oComing soon!" to {_Attacker}
+				if {Kills::%{_Attacker.uuid}%} is 1500:
+					set {Rank::%{_Attacker.uuid}%} to 10
+					message "" to {_Attacker}
+					message "   &9&l^ You Have Ranked Up! ^" to {_Attacker}
+					message "   &7Unlocked &8&l| &e&oComing soon!" to {_Attacker}
+					message "" to {_Attacker}
+					message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &3&l&m-==-&r &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to {_Attacker}
+		
+		
+		
+		
+		
+	if file "PlayerProfiles/%victim's uuid%/%victim%/Deaths.yml" doesn't exists:
+		create file "PlayerProfiles/%victim's uuid%/%victim%/Deaths.yml"
+	wait 1 tick
+	if file "PlayerProfiles/%victim's uuid%/%victim%/Deaths.yml" exists:
+		wf "[%now%] - (%{Kills::%victim's uuid%}%) %victim% was killed by %attacker%" to "PlayerProfiles/%victim's uuid%/%victim%/Deaths.yml"
+	if file "PlayerProfiles/%attacker's uuid%/%attacker%/Kills.yml" doesn't exists:
+		create file "PlayerProfiles/%attacker's uuid%/%attacker%/Kills.yml"
+	wait 1 tick
+	if file "PlayerProfiles/%attacker's uuid%/%attacker%/Kills.yml" exists:
+		wf "[%now%] - (%{Kills::%attacker's uuid%}%) %attacker% has killed %victim%" to "PlayerProfiles/%attacker's uuid%/%attacker%/Kills.yml"
+	set SLOT 0 of player to chest of infinity 1 named "&8&l-={ &cKits&8&l }=-" with lore "&7&oOpen the Main Kits menu."
+	set SLOT 2 of player to emerald of infinity 1 named "&8&l-={ &bShop&8&l }=-" with lore "&7&oOpen the Shop menu."
+	set SLOT 4 of player to player head of infinity 1 named "&8&l-={ &aProfile&8&l }=-" with lore "&7&oView all of your statistics."
+	set SLOT 6 of player to nether star of infinity 1 named "&8&l-={ &eAchievements&8&l }=-" with lore "&c&oComing soon!"
+	set SLOT 8 of player to enchantment table of infinity 1 named "&8&l-={ &dOptions&8&l }=-" with lore "&7&oScoreboard, Messages, More to come!"
+	set {_DTime} to 5
+	clear {Assist.%victim's uuid%::*}
+	add "Hex" to {Assist.%victim's uuid%::*}
+	if {_Attacker} is victim:
+		send player title "&c&lRespawning in... %{_DTime}%" with subtitle "&4You committed Suicide!" for 2 seconds with 0 ticks fade in and 20 ticks fade out
+	else:
+		send player title "&c&lRespawning in... %{_DTime}%" with subtitle "&4%attacker% &c&lKilled you!" for 2 seconds with 0 ticks fade in and 20 ticks fade out
+	loop 4 times:
+		wait 1 second
+		remove 1 from {_DTime}
+		if {_Attacker} is victim:
+			send player title "&c&lRespawning in... %{_DTime}%" with subtitle "&4You committed Suicide!" for 2 seconds with 0 ticks fade in and 20 ticks fade out
+		else:
+			send player title "&c&lRespawning in... %{_DTime}%" with subtitle "&4%attacker% &c&lKilled you!" for 2 seconds with 0 ticks fade in and 20 ticks fade out
+	wait 20 tick
+	send player title "" with subtitle "" for 1 seconds with 1 ticks fade in and 1 ticks fade out
+	make player execute command "/DeathSpawnTp"
+	set the player's gamemode to adventure
+	disable fly for player
+	reveal player to all players
+	heal victim
+	set {God::%player's uuid%} to 0
+	set {Attacker::%player's uuid%} to "None"

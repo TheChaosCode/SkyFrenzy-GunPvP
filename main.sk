@@ -1,0 +1,329 @@
+options:
+	damaged: 0.5
+on jump:
+	if {Jump::%player's uuid%} = 1:
+		stop
+	else:
+		set {Jump::%player's uuid%} to 1
+		add 1 to {Jumps::%player's uuid%}
+		if {Jumps::%player's uuid%} is 1000:
+			add 750 to {Money::%player's uuid%}
+			make player execute command "/APxHex"
+			message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &2&lAchievements &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+			message ""
+			message "   &2Achievement &9Hopper! &7(&a&oComplete!&7)"
+			message "   &7Reward &8&l| &e&o+$750"
+			message ""
+			message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &2&l&m-======-&r &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+		wait 7 tick
+		set {Jump::%player's uuid%} to 0
+every 1 second:
+	loop all players:
+		if loop-player is online:
+			add 1 to {Online.Time.Session::%loop-player's uuid%}
+			add 1 to {PlayTime::%loop-player's uuid%}
+			if {Online.Time.Session::%loop-player's uuid%} is 60:
+				set {Online.Time.Session::%loop-player's uuid%} to 0
+				add 1 to {Online.Time.Session.Mins::%loop-player's uuid%}
+			if {Online.Time.Session.Mins::%loop-player's uuid%} is 60:
+				set {Online.Time.Session.Mins::%loop-player's uuid%} to 0
+				add 1 to {Session.Time.Hours::%loop-player's uuid%}
+			if {PlayTime::%loop-player's uuid%} is 60:
+				set {PlayTime::%loop-player's uuid%} to 0
+				add 1 to {PlayTime.Mins::%loop-player's uuid%}
+			if {PlayTime.Mins::%loop-player's uuid%} is 60:
+				set {PlayTime.Mins::%loop-player's uuid%} to 0
+				add 1 to {PlayTime.Hours::%loop-player's uuid%}
+command /EraseAll:
+	executable by: players
+	trigger:
+		if player is "Discarding" or "ChaosJumper8":
+			clear {SafeZone::*}
+			clear {Ninjump::*}
+			clear {Spectate::*}
+			clear {God::*}
+			clear {Speed::*}
+			clear {CombatLog::*}
+			clear {SpawnTP::*}
+			clear {Damage::*}
+			clear {Mystery::*}
+			clear {Money::*}
+			clear {Attachment::*}
+			clear {Perk::*}
+			clear {Kills::*}
+			clear {Deaths::*}
+			clear {Speed::*}
+			clear {Dodges::*}
+			clear {Jumps::*}
+			clear {Votes::*}
+			clear {Kits::*}
+			clear {Kit::*}
+			clear {Rank::*}
+			clear {God::*}
+			clear {GreenKey::*}
+			clear {YellowKey::*}
+			clear {RedKey::*}
+			clear {PinkKey::*}
+			clear {BlueKey::*}
+			clear {KillStreak.Session::*}
+			clear {CombatLog::*}
+			clear {SpawnTP::*}
+			clear {Donor::*}
+			clear {Joins::*}
+			clear {Online.Kills.Session::*}
+			clear {Online.Time.Session::*}
+			clear {Online.Time.Session.Mins::*}
+			clear {Online.Time.Session.Hours::*}
+			clear {Online.Deaths.Session::*}
+			send "   &4&lAll Data Erased!"
+on join:
+	set join message to ""
+	send player title "&8&l-={ &6&lValidPvp &8&l}=-" with subtitle "&c&lWelcome &4%player%&b&l!" for 5 seconds with 10 ticks fade in and 60 ticks fade out
+	set {SafeZone::%player's uuid%} to 1
+	set {Ninjump::%player's uuid%} to 0
+	set {Spectate::%player's uuid%} to 0
+	set {God::%player's uuid%} to 0
+	set {Speed::%player's uuid%} to 0.20
+	set {CombatLog::%player's uuid%} to 0
+	set {SpawnTP::%player's uuid%} to 0
+	set {Damage::%player's uuid%} to 0
+	set the player's gamemode to adventure
+	teleport player to {Spawn}
+	hide the player from all players
+	add 1 to {Joins::%player's uuid%}
+	if {Perk::%player's uuid%} is not set:
+		set {Perk::%player's uuid%} to "None"
+	if file "PlayerProfiles/%player's uuid%" doesn't exists:
+		create folder "PlayerProfiles/%player's uuid%"
+	if file "PlayerProfiles/%player's uuid%/%player%" doesn't exists:
+		create folder "PlayerProfiles/%player's uuid%/%player%"
+	if file "PlayerProfiles/%player's uuid%/%player%/Joins.yml" doesn't exists:
+		create file "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+	if file "PlayerProfiles/%player's uuid%/%player%/FirstTime.yml" doesn't exists:
+		create file "PlayerProfiles/%player's uuid%/%player%/FirstTime.yml"
+	wait 1 tick
+	if {Joins::%player's uuid%} is 1:
+		clear player's inventory
+		set SLOT 0 of player to chest of infinity 1 named "&8&l-={ &cKits&8&l }=-" with lore "&7&oOpen the Main Kits menu."
+		set SLOT 2 of player to emerald of infinity 1 named "&8&l-={ &bShop&8&l }=-" with lore "&7&oOpen the Shop menu."
+		set SLOT 4 of player to player head of infinity 1 named "&8&l-={ &aProfile&8&l }=-" with lore "&7&oView all of your statistics."
+		set SLOT 6 of player to nether star of infinity 1 named "&8&l-={ &eAchievements&8&l }=-" with lore "&c&oComing soon!"
+		set SLOT 8 of player to enchantment table of infinity 1 named "&8&l-={ &dOptions&8&l }=-" with lore "&7&oScoreboard, Messages, More to come!"
+		set {Mystery::%player's uuid%} to true
+		set {Money::%player's uuid%} to 0
+		set {Attachment::%player's uuid%} to "None"
+		set {Perk::%player's uuid%} to "None"
+		set {Kills::%player's uuid%} to 0
+		set {Deaths::%player's uuid%} to 0
+		set {Speed::%player's uuid%} to 0.20
+		set {Dodges::%player's uuid%} to 0
+		set {Jumps::%player's uuid%} to 0
+		set {Votes::%player's uuid%} to 0
+		set {Kits::%player's uuid%} to 0
+		set {Kit::%player's uuid%} to "None"
+		set {Rank::%player's uuid%} to 0
+		set {God::%player's uuid%} to 0
+		set {GreenKey::%player's uuid%} to 0
+		set {YellowKey::%player's uuid%} to 0
+		set {RedKey::%player's uuid%} to 0
+		set {PinkKey::%player's uuid%} to 0
+		set {BlueKey::%player's uuid%} to 0
+		set {KillStreak.Session::%player's uuid%} to 0
+		set {CombatLog::%player's uuid%} to 0
+		set {SpawnTP::%player's uuid%} to 0
+		if file "PlayerProfiles/%player's uuid%/%player%/FirstTime.yml" exists:
+			wf "[%now%] %player% Has Joined for the first time!" to "PlayerProfiles/%player%/FirstTime.yml"
+		wait 3 second
+		send "&8[&9Profile&8] &3New Profile Created!"
+	if {Mystery::%player's uuid%} is not set:
+		set {Mystery::%player's uuid%} to true
+		set {GreenKey::%player's uuid%} to 0
+		set {YellowKey::%player's uuid%} to 0
+		set {RedKey::%player's uuid%} to 0
+		set {PinkKey::%player's uuid%} to 0
+		set {BlueKey::%player's uuid%} to 0
+	if {Donor::%player's uuid%} is not set:
+		set {Donor::%player's uuid%} to "None"
+		wait 1 second
+		set action bar of player to "&8&l-={ &b&lYour Profile has been updated! &8&l}=-"
+	if file "PlayerProfiles/%player's uuid%/%player%/Joins.yml" exists:
+		wf "---------------------------------------------------------------------------------" to "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+		wf "[%now%] %player% Has Joined" to "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+	if {Donor::%player's uuid%} is "Vip":
+		wait 1 second
+		broadcast ""
+		broadcast "&8&l-={ &8[&dVip&8] &b%player% &7&oHas joined ValidPvp &8&l}=-"
+		broadcast ""
+	wait 2 second
+	execute console command "/play sound type:note_pling pitch:1.7 loc:Main,%{X::%player's uuid%}%,%{Y::%player's uuid%}%,%{Z::%player's uuid%}%"
+	send player title "&8&l-={ &bKitPvp &8&l}=-" with subtitle "&d&lMysteryBoxes &7are now avalaible" for 5 seconds with 0 ticks fade in and 0 ticks fade out
+	wait 4 second
+	execute console command "/play sound type:note_pling pitch:1.7 loc:Main,%{X::%player's uuid%}%,%{Y::%player's uuid%}%,%{Z::%player's uuid%}%"
+	send player title "&8&l-={ &bKitPvp &8&l}=-" with subtitle "&a&l1.3 &7Update is complete!" for 5 seconds with 0 ticks fade in and 0 ticks fade out
+	
+on quit:
+	set quit message to ""
+	if {CombatLog::%player's uuid%} is greater than 1:
+		send "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &9&lCombat Tag &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+		send "&8"
+		send "&8          &3You are no longer combat Tagged!"
+		send "&8"
+		message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &9&lCombat Tag &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+	set {God::%player's uuid%} to 0
+	add 1 to {Quits::%player's uuid%}
+
+	if file "PlayerProfiles/%player's uuid%/%player%/Joins.yml" exists:
+		wf "_________________________________________________________________________________" to "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+		wf "[%now%] %player% Has Quit" to "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+		wf "" to "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+		wf "- Kills: %{Online.Kills.Session::%player's uuid%}%" to "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+		wf "- PlayTime: %{Online.Time.Session::%player's uuid%}% Secs %{Online.Time.Session.Mins::%player's uuid%}% Mins %{Online.Time.Session.Hours::%player's uuid%}% Hrs" to "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+		wf "- Deaths: %{Online.Deaths.Session::%player's uuid%}%" to "PlayerProfiles/%player's uuid%/%player%/Joins.yml"
+		wf "_________________________________________________________________________________" to "PlayerProfiles/%player%/Joins.yml"
+	set {Online.Kills.Session::%player's uuid%} to 0
+	set {Online.Time.Session::%player's uuid%} to 0
+	set {Online.Time.Session.Mins::%player's uuid%} to 0
+	set {Online.Time.Session.Hours::%player's uuid%} to 0
+	set {Online.Deaths.Session::%player's uuid%} to 0
+	if {Donor::%player's uuid%} is "Vip":
+		broadcast ""
+		broadcast "&8&l-={ &8[&dVip&8] &b%player% &c&oHas Left ValidPvp &8&l}=-"
+		broadcast ""
+		
+on chat:
+	if file "PlayerProfiles/%player's uuid%/%player%/Logs.yml" doesn't exists:
+		create file "PlayerProfiles/%player's uuid%/%player%/Logs.yml"
+	wait 1 tick
+	if file "PlayerProfiles/%player's uuid%/%player%/Logs.yml" exists:
+		wf "[%now%] - (%{Kills::%player's uuid%}%) %player% > %message% <" to "PlayerProfiles/%player's uuid%/%player%/Logs.yml"	
+on rightclick using chest:
+	if name of the player's tool contains "Kits":
+		make player execute command "/kits"
+on rightclick using emerald:
+	if name of the player's tool contains "Shop":
+		make player execute command "/shop"
+on rightclick using player head:
+	if name of the player's tool contains "Profile":
+		make player execute command "/profile"
+on rightclick using nether star:
+	if name of the player's tool contains "Achievements":
+		make player execute command "/Achievements"
+on rightclick using enchantment table:
+	if name of the player's tool contains "Options":
+		make player execute command "/Loot"
+command /PlayerPopAnimation:
+	executable by: players
+	trigger:
+		op the player
+		make player execute command "/play lava loc:here num:20 offset:0.25"
+		make player execute command "/play firework loc:here color:red"
+		deop the player	
+every 1 seconds:
+	loop all players:
+		if {Damage::%loop-player's uuid%} is 1:
+			if {CombatLog::%loop-player's uuid%} is 0:
+				message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &9&lCombat Tag &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to loop-player
+				send "&8" to loop-player
+				send "&8          &3You are no longer combat Tagged!" to loop-player
+				send "&8" to loop-player
+				message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &9&lCombat Tag &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to loop-player
+				set {Damage::%loop-player's uuid%} to 0
+			else:
+				remove 1 from {CombatLog::%loop-player's uuid%}
+command /Ranks:
+	executable by: players
+	trigger:
+		message "&8&l&m-={&r &b&l&m=&r &8&l&m}=-----=&8&l[ &6&lRanks &8&l]&8&l&m=-----={&r &b&l&m=&r &8&l&m}=-"
+		message ""
+		if {Kills::%player's uuid%} is more than 9:
+			message " &8[&7Private&8] &8&l| &7(&a&oComplete!&7)"
+		else:
+			message " &8[&7Private&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c10&7)"
+		
+		if {Kills::%player's uuid%} is more than 29:
+			message " &8[&3Private2&8] &8&l| &7(&a&oComplete!&7)"
+		else if {Kills::%player's uuid%} is more than 9:
+			message " &8[&3Private2&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c30&7)"
+		else:
+			message " &8[&3Private2&8] &8&l| &7(&6Requires Private!&7)"
+		
+		if {Kills::%player's uuid%} is more than 59:
+			message " &8[&bSpecialist&8] &8&l| &7(&a&oComplete!&7)"
+		else if {Kills::%player's uuid%} is more than 29:
+			message " &8[&bSpecialist&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c60&7)"
+		else:
+			message " &8[&bSpecialist&8] &8&l| &7(&6Requires Private2!&7)"
+		
+		if {Kills::%player's uuid%} is more than 99:
+			message " &8[&1Corporal&8] &8&l| &7(&a&oComplete!&7)"
+		else if {Kills::%player's uuid%} is more than 59:
+			message " &8[&1Corporal&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c100&7)"
+		else:
+			message " &8[&1Corporal&8] &8&l| &7(&6Requires Specialist!&7)"
+		
+		if {Kills::%player's uuid%} is more than 149:
+			message " &8[&2Sergeant&8] &8&l| &7(&a&oComplete!&7)"
+		else if {Kills::%player's uuid%} is more than 99:
+			message " &8[&2Sergeant&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c150&7)"
+		else:
+			message " &8[&2Sergeant&8] &8&l| &7(&6Requires Corpral!&7)"
+		
+		if {Kills::%player's uuid%} is more than 249:
+			message " &8[&aSSergeant&8] &8&l| &7(&a&oComplete!&7)"
+		else if {Kills::%player's uuid%} is more than 149:
+			message " &8[&aSSergeant&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c250&7)"
+		else:
+			message " &8[&aSSergeant&8] &8&l| &7(&6Requires Sergeant!&7)"
+		
+		if {Kills::%player's uuid%} is more than 399:
+			message " &8[&eSFC&8] &8&l| &7(&a&oComplete!&7)"
+		else if {Kills::%player's uuid%} is more than 249:
+			message " &8[&eSFC&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c400&7)"
+		else:
+			message " &8[&eSFC&8] &8&l| &7(&6Requires SSergeant!&7)"
+		
+		if {Kills::%player's uuid%} is more than 599:
+			message " &8[&6MasterSergeant&8] &8&l| &7(&a&oComplete!&7)"
+		else if {Kills::%player's uuid%} is more than 399:
+			message " &8[&6MasterSergeant&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c600&7)"
+		else:
+			message " &8[&6MasterSergeant&8] &8&l| &7(&6Requires SFC!&7)"
+			
+		if {Kills::%player's uuid%} is more than 999:
+			message " &8[&cFirstSergeant&8] &8&l| &7(&a&oComplete!&7)"
+		else if {Kills::%player's uuid%} is more than 599:
+			message " &8[&cFirstSergeant&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c1000&7)"
+		else:
+			message " &8[&cFirstSergeant&8] &8&l| &7(&6Requires MasterSergeant!&7)"
+			
+		if {Kills::%player's uuid%} is more than 1499:
+			message " &8[&4SergeantMajor&8] &8&l| &7(&a&oComplete!&7) &c&lMore ranks Coming soon!"
+		else if {Kills::%player's uuid%} is more than 999:
+			message " &8[&4SergeantMajor&8] &8&l| &7(&c%{Kills::%player's uuid%}%&7/&c1500&7)"
+		else:
+			message " &8[&4SergeantMajor&8] &8&l| &7(&6Requires FirstSergeant!&7)"
+command /SPIN:
+	trigger:
+		thrust player upwards at velocity 0.5
+		wait 1 tick
+		add 1 to {Caster.Kit.%player%}
+		loop 20 times:
+			if {Caster.Kit.%player%} is more than 0:
+				execute console command "/tp %player% ~0 ~0 ~0 ~20 ~0"
+				wait 1 tick
+		set {Caster.Kit.%player%} to 0
+command /CastParticles:
+	trigger:
+		make player execute command "/witchkitxHex"
+command /CasterSpell:
+	trigger:
+		make player execute command "/CastParticles"
+		wait 1 tick
+		make player execute command "/Spin"
+every 1 tick:
+	loop all players:
+		set {X::%loop-player's uuid%} to rounded x-coordinate of loop-player
+		set {Y::%loop-player's uuid%} to rounded Y-coordinate of loop-player
+		set {Z::%loop-player's uuid%} to rounded z-coordinate of loop-player
+	
+	

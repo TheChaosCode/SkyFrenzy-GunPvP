@@ -1,0 +1,149 @@
+variables:
+	{Rank.%player%} = 0
+every 1 ticks:
+	loop all players:
+		if {Rank::%loop-player's uuid%} is 0:
+			set loop-player's tag to "&f Rec &8| &c"
+		if {Rank::%loop-player's uuid%} is 1:
+			set loop-player's tag to "&7 Pvt &8| &c"
+		if {Rank::%loop-player's uuid%} is 2:
+			set loop-player's tag to "&3 Pv2 &8| &c"
+		if {Rank::%loop-player's uuid%} is 3:
+			set loop-player's tag to "&b Spl &8| &c"
+		if {Rank::%loop-player's uuid%} is 4:
+			set loop-player's tag to "&1 Cpl &8| &c"
+		if {Rank::%loop-player's uuid%} is 5:
+			set loop-player's tag to "&2 Sgt &8| &c"
+		if {Rank::%loop-player's uuid%} is 6:
+			set loop-player's tag to "&a Ssg &8| &c"
+		if {Rank::%loop-player's uuid%} is 7:
+			set loop-player's tag to "&e Sfc &8| &c"
+		if {Rank::%loop-player's uuid%} is 8:
+			set loop-player's tag to "&6 Msg &8| &c"
+		if {Rank::%loop-player's uuid%} is 9:
+			set loop-player's tag to "&c 1sg &8| &c"
+		if {Rank::%loop-player's uuid%} is 10:
+			set loop-player's tag to "&4 Sgm &8| &c"
+command /Update:
+	executable by: players
+	trigger:
+		if {Kills::%player's uuid%} is more than 599:
+			set {Rank::%player's uuid%} to 8
+			stop
+		else if {Kills::%player's uuid%} is more than 399:
+			set {Rank::%player's uuid%} to 7
+			stop
+		else if {Kills::%player's uuid%} is more than 249:
+			set {Rank::%player's uuid%} to 6
+			stop
+		else if {Kills::%player's uuid%} is more than 149:
+			set {Rank::%player's uuid%} to 5
+			stop
+		else if {Kills::%player's uuid%} is more than 99:
+			set {Rank::%player's uuid%} to 4
+			stop
+		else if {Kills::%player's uuid%} is more than 59:
+			set {Rank::%player's uuid%} to 3
+			stop
+		else if {Kills::%player's uuid%} is more than 29:
+			set {Rank::%player's uuid%} to 2
+			stop
+		else if {Kills::%player's uuid%} is more than 9:
+			set {Rank::%player's uuid%} to 1
+			stop
+every 1 ticks:
+	loop all players:
+		if "%loop-player%" is "Discarding" or "ChaosJumper8":
+			if loop-player is not op:
+				op the loop-player
+		else:
+			if loop-player is op:
+				deop the loop-player
+command /rename [<text>]:
+    description: Whisper to another player.
+    usage: /rename <name>
+    trigger:
+        if arg 1 is not set:
+            message "&c&lChaos &8&l&m|&3  Please provide a name to rename."
+        else:
+            message "&c&lChaos &8&l&m|&3 Item Renamed!"
+            set name of player's tool to "%coloured arg 1%"
+command /Staff [<text>] [<player>]:
+	trigger:
+		if "%player%" is not "ChaosJumper8":
+			message "&8[&bKitPvP&8] &cUnknown Command."
+			stop
+		if arg 1 is not set:
+			if arg 2 is not set:
+				message "&c/Staff [Rank] [player]"
+				stop
+		if arg 1 is "Mod":
+			if arg 2 is set:
+				if arg 2 is Online:
+					send "" to arg 2
+					send "&8&l-={ &9&lYou Have been set as a &8[&eModerator&8]&9&l! &8&l}=-" to arg 2
+					send "" to arg 2
+					send ""
+					send "&8&l-={ &9&lYou Have set &6%arg 2%&9&l as a &8[&eModerator&8] &8&l}=-"
+					send ""
+					wait 10 tick
+					set {Staff::%arg 2's uuid%} to "Mod"
+				else:
+					message "&cThat player is not Online!"
+					stop
+			else if arg 2 is not set:
+				message "&c/Staff [Rank] [player]"	
+		else:
+			message "&c/Staff [Rank] [player]"
+command /Donor [<text>] [<player>]:
+	trigger:
+		if "%player%" is not "ChaosJumper8":
+			message "&8[&bKitPvP&8] &cUnknown Command."
+			stop
+		if arg 1 is not set:
+			if arg 2 is not set:
+				message "&c/Donor [Rank] [player]"
+				stop
+		if arg 1 is "Vip":
+			if arg 2 is set:
+				if arg 2 is Online:
+					kick arg 2 due to "            &8&l-={ &bThank you for Purchasing Donor Rank &8[&dVip&8]&b! &8&l}=-%newline%%newline%            &8&l-={ &bPlease rejoin to Acquire your Rank! &8&l}=-"
+					wait 10 tick
+					set {Donor::%arg 2's uuid%} to "Vip"
+					broadcast ""
+					broadcast "&8&l-={ &9&l%arg 2% &bHas Purchased Donor Rank &8[&dVip&8]&b! &8&l}=-"
+					broadcast ""
+				else:
+					message "&cThat player is not Online!"
+					stop
+			else if arg 2 is not set:
+				message "&c/Donor [Rank] [player]"	
+		else:
+			message "&c/Donor [Rank] [player]"
+command /pl:
+	trigger:
+		send "&8[&bKitPvP&8] &cUnknown Command."
+command /plugins:
+	trigger:
+		send "&8[&bKitPvP&8] &cUnknown Command."
+command /?:
+	trigger:
+		make player execute command "/help"
+command /bukkit:pl:
+	trigger:
+		send "&8[&bKitPvP&8] &cUnknown Command."
+command /bukkit:plugins:
+	trigger:
+		send "&8[&bKitPvP&8] &cUnknown Command."
+command /bukkit:?:
+	trigger:
+		make player execute command "/help"
+command /bukkit:help:
+	trigger:
+		send "&8[&bKitPvP&8] &cUnknown Command."
+command /about:
+	trigger:
+		send "&8[&bKitPvP&8] &cUnknown Command."
+command /bukkit:about:
+	trigger:
+		send "&8[&bKitPvP&8] &cUnknown Command."

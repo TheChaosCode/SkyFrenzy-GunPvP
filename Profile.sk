@@ -1,0 +1,61 @@
+
+options:
+	kdr: {Kills::%player's uuid%} / {Deaths::%player's uuid%}
+
+command /Profile:
+	executable by: players
+	trigger:
+		execute console command "/playsound mob.enderdragon.wings %player% ~ ~ ~ 1 1 1"
+		open chest with 3 row named "&aProfile" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with diamond sword named "&6&lKDR &7&l&m|&e %{@kdr}%" with lore "&7View youre kills and deaths" to run [make player execute command ""]
+		format SLOT 11 of player with diamond named "&6&lDeaths &7&l&m|&e %{Deaths::%player's uuid%}%" with lore "&7View the count of deaths" to close then run [make player execute command ""]
+		format SLOT 12 of player with redstone named "&6&lKills &7&l&m|&e %{Kills::%player's uuid%}%" with lore "&7Kills" to run [make player execute command "/Shop"]
+		format SLOT 13 of player with nether star named "&6&lVotes &7&l&m|&e %{Votes::%player's uuid%}%" with lore " Votes !" to close then run [make player execute command "/vote"]
+		format SLOT 14 of player with emerald named "&6&lBalance &8&l&m|&e  &6$&e%{Money::%player's uuid%}%" with lore "&7Money $$$" to close then run [make player execute command "/shop"]
+		format SLOT 15 of player with leather boots named "&6&lJumps &7&l&m|&e %{Jumps::%player's uuid%}%" with lore "&7Jumps" to run [make player execute command ""]
+		format SLOT 16 of player with iron sword named "&6&lDodges &7&l&m|&e %{Dodges::%player's uuid%}%" with lore "&7Doges" to close then run [make player execute command ""]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+
+command /Money:
+	executable by: players
+	aliases: /Cash, /Balance, /Stash
+	trigger:
+		message "&b&lBalance &8&l&m|&6  $%{Money::%player's uuid%}%"
+command /Vote:
+	trigger:
+		message "&8&l&m-={&r &b&l&m=&r &8&l&m}=----------=&8&l[ &6&l&oVote &8&l]&8&l&m=----------={&r &b&l&m=&r &8&l&m}=-"
+		message "&r"
+		message "&r   &8&l&m|&c&o   &8&l> &3MinecraftServers.Org"
+		message "&r"
+		message "&r   &8&l&m|&c&o   &8&l> &3Minecraft-MP.com"
+		message "&r"
+		message "&r   &8&l&m|&c&o   &8&l> &3MineStatus.net"
+		message "&r"
+		message "&r   &8&l&m|&c&o   &8&l> &3FunMinecraftServers.com"
+		message "&r"
+		message "&8&l&m-={&r &b&l&m=&r &8&l&m}=----------=&8&l[ &5&l&oVote &8&l]&8&l&m=----------={&r &b&l&m=&r &8&l&m}=-"
+		
+		
+		
+		
+

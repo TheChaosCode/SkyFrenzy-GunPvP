@@ -1,0 +1,278 @@
+command /AttachmentShop:
+	trigger:
+		open chest with 6 row named "&8[&b&lShop&8]" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with gray dye named "&8[&7Grenade&8]" with lore "&3Price &8&l| &6$500||" to close then run [make player execute command "/GrenadexPurchase"]
+		format SLOT 11 of player with light blue dye named "&8[&bFlashBang&8]" with lore "&3Price &8&l| &6$1,000||" to close then run [make player execute command "/FlashBangxPurchase"]
+		format SLOT 12 of player with clay ball named "&8[&eNovaGas&8]" with lore "&3Price &8&l| &6$1,700||" to close then run [make player execute command "/NovaGasxPurchase"]
+		format SLOT 13 of player with tnt named "&8[&dClusterGrenade&8]" with lore "&3Price &8&l| &6$3,000||" to close then run [make player execute command "/ClusterGrenadexPurchase"]
+		format SLOT 14 of player with clay ball named "&8[&bIce Bomb&8]" with lore "&3Price &8&l| &6$3,200||" to close then run [make player execute command "/IceBombxPurchase"]
+		format SLOT 15 of player with iron pickaxe named "&8[&aCrossbow&8]" with lore "&3Price &8&l| &6$6,000||" to close then run [make player execute command "/CrossbowxPurchase"]
+		format SLOT 16 of player with iron axe named "&8[&2Tomahawk&8]" with lore "&3Price &8&l| &6$7,500||" to close then run [make player execute command "/TomahawkxPurchase"]
+		format SLOT 19 of player with seeds named "&8[&aPoppy seeds&8]" with lore "&3Price &8&l| &6$6,500||" to close then run [make player execute command "/PoppySeedsxPurchase"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 27 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 35 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 36 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 44 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 45 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 46 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 47 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 48 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 49 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 50 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 51 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 52 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 53 of player with blue stained glass pane named " " to be unstealable
+command /AttachmentxWardrobe:
+	trigger:
+		open chest with 6 row named "&8[&b&lKits&8] &e&lAttachments" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		if {Attachment.Grenade::%player's uuid%} is 1:
+			format SLOT 10 of player with gray dye named "&8[&7Grenade&8]" with lore "" to run [make player execute command "/GrenadexSelect"]
+		else:
+			format SLOT 10 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.Flashbang::%player's uuid%} is 1:
+			format SLOT 11 of player with light blue dye named "&8[&bFlashBang&8]" with lore "" to run [make player execute command "/FlashBangxSelect"]
+		else:
+			format SLOT 11 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.NovaGas::%player's uuid%} is 1:
+			format SLOT 12 of player with clay ball named "&8[&eNovaGas&8]" with lore "" to run [make player execute command "/NovaGasxSelect"]
+		else:
+			format SLOT 12 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.ClusterGrenade::%player's uuid%} is 1:
+			format SLOT 13 of player with tnt named "&8[&dClusterGrenade&8]" with lore "" to run [make player execute command "/ClusterGrenadexSelect"]
+		else:
+			format SLOT 13 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.IceBomb::%player's uuid%} is 1:
+			format SLOT 14 of player with clay ball named "&8[&bIceBomb&8]" with lore "" to run [make player execute command "/IceBombxSelect"]
+		else:
+			format SLOT 14 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.Crossbow::%player's uuid%} is 1:
+			format SLOT 15 of player with iron pickaxe named "&8[&aCrossbow&8]" with lore "" to run [make player execute command "/CrossbowxSelect"]
+		else:
+			format SLOT 15 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.Tomahawk::%player's uuid%} is 1:
+			format SLOT 16 of player with iron axe named "&8[&2Tomahawk&8]" with lore "" to run [make player execute command "/TomahawkxSelect"]
+		else:
+			format SLOT 16 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.PoppySeeds::%player's uuid%} is 1:
+			format SLOT 19 of player with seeds named "&8[&aPoppy Seeds&8]" with lore "" to run [make player execute command "/PoppySeedsxSelect"]
+		else:
+			format SLOT 19 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.FlameBurst::%player's uuid%} is 1:
+			format SLOT 20 of player with fire charge named "&8[&6FlameBurst&8]" with lore "" to run [make player execute command "/FlameBurstxSelect"]
+		else:
+			format SLOT 20 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Attachment.HeartBomb::%player's uuid%} is 1:
+			format SLOT 21 of player with tnt named "&8[&dHeartBomb&8]" with lore "" to run [make player execute command "/HeartBombxSelect"]
+		else:
+			format SLOT 21 of player with white stained glass pane named " " with lore " " to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 27 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 35 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 36 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 44 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 45 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 46 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 47 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 48 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 49 of player with redstone block named "&8[&3Back to Kits Menu&8]" to run [make player execute command "/Kits"]
+		format SLOT 50 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 51 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 52 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 53 of player with blue stained glass pane named " " to be unstealable
+
+
+
+command /GrenadexSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "Grenade"
+		send "&b&lAttachment '&7Grenade&b&l' Selected!"
+		make player execute command "/kits"
+command /FlashBangxSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "FlashBang"
+		send "&b&lAttachment '&bFlashBang&b&l' Selected!"
+		make player execute command "/kits"
+command /NovaGasxSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "NovaGas"
+		send "&b&lAttachment '&eNovaGas&b&l' Selected!"
+		make player execute command "/kits"
+command /ClusterGrenadexSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "ClusterGrenade"
+		send "&b&lAttachment '&dClusterGrenade&b&l' Selected!"
+		make player execute command "/kits"
+command /IceBombxSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "IceBomb"
+		send "&b&lAttachment '&dIceBomb&b&l' Selected!"
+		make player execute command "/kits"
+command /CrossbowxSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "Crossbow"
+		send "&b&lAttachment '&aCrossbow&b&l' Selected!"
+		make player execute command "/kits"
+command /TomahawkxSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "Tomahawk"
+		send "&b&lAttachment '&2Tomahawk&b&l' Selected!"
+		make player execute command "/kits"
+command /PoppySeedsxSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "PoppySeeds"
+		send "&b&lAttachment '&aPoppy Seeds&b&l' Selected!"
+		make player execute command "/kits"
+command /FlameBurstxSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "FlameBurst"
+		send "&b&lAttachment '&cFlame Burst&b&l' Selected!"
+		make player execute command "/kits"
+command /HeartBombxSelect:
+	executable by: players
+	trigger:
+		set {Attachment::%player's uuid%} to "HeartBomb"
+		send "&b&lAttachment '&dHeartbomb&b&l' Selected!"
+		make player execute command "/kits"
+
+		
+		
+command /GrenadexPurchase:
+	trigger:
+		if {Attachment.Grenade::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 499:
+			remove 500 from {Money::%player's uuid%}
+			set {Attachment.Grenade::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Attachment '&7Grenade&a&l'"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /FlashBangxPurchase:
+	trigger:
+		if {Attachment.Flashbang::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 999:
+			remove 1000 from {Money::%player's uuid%}
+			set {Attachment.Flashbang::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Attachment '&bFlashbang&a&l'"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /NovaGasxPurchase:
+	trigger:
+		if {Attachment.NovaGas::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 1699:
+			remove 1700 from {Money::%player's uuid%}
+			set {Attachment.NovaGas::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Attachment '&eNovaGas&a&l'"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /ClusterGrenadexPurchase:
+	trigger:
+		if {Attachment.ClusterGrenade::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 2999:
+			remove 3000 from {Money::%player's uuid%}
+			set {Attachment.ClusterGrenade::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Attachment '&dClusterGrenade&a&l'"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /IceBombxPurchase:
+	trigger:
+		if {Attachment.IceBomb::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 3199:
+			remove 3200 from {Money::%player's uuid%}
+			set {Attachment.IceBomb::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Attachment '&dIceBomb&a&l'"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /CrossbowxPurchase:
+	trigger:
+		if {Attachment.Crossbow::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 5999:
+			remove 6000 from {Money::%player's uuid%}
+			set {Attachment.Crossbow::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Attachment '&aCrossbow&a&l'"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /TomahawkxPurchase:
+	trigger:
+		if {Attachment.Tomahawk::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 7499:
+			remove 7500 from {Money::%player's uuid%}
+			set {Attachment.Tomahawk::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Attachment '&2Tomahawk&a&l'"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+command /PoppySeedsxPurchase:
+	trigger:
+		if {Attachment.PoppySeeds::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			stop
+		else if {Money::%player's uuid%} is greater than 6499:
+			remove 6500 from {Money::%player's uuid%}
+			set {Attachment.PoppySeeds::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Attachment '&aPoppySeeds&a&l'"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"

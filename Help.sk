@@ -1,0 +1,204 @@
+command /Help:
+	aliases: /?, /bukkit:?, /bukkit:help, /commands
+	trigger:
+		execute console command "/playsound mob.villager.idle %player% ~ ~ ~ 1 1.25 1"
+		open chest with 3 row named "&8[&b&lHelp&8]" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 12 of player with wooden pickaxe named "&8[&eHow to Play!&8]" with lore "&7Learn all the basics, features about this||&7KitPvP Server, Secrets, Techniques and more!" to run [make player execute command "/HTP"]
+		format SLOT 14 of player with enchanted book named "&8[&3Commands&8]" with lore "&7View all of the Commands Avaliable for your Rank!" to run [make player execute command "/HelpCommands"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+command /HelpCommands:
+	trigger:
+		execute console command "/playsound mob.enderdragon.wings %player% ~ ~ ~ 1 1 1"
+		open chest with 3 row named "&8[&b&lHelp&8] &3Commands" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with diamond sword named "&8[&3/Kits&8]" with lore "&7View all Unlocked kits, Attachments, and Purchased kits." to run [make player execute command "/Kits"]
+		format SLOT 11 of player with diamond named "&8[&3/Profile&8]" with lore "&7View all of your Stats." to close then run [make player execute command "/Profile"]
+		format SLOT 12 of player with gold ingot named "&8[&3/Shop&8]" with lore "&7Purchase Unique Kits and Attachments!" to run [make player execute command "/Shop"]
+		format SLOT 13 of player with nether star named "&8[&2/Spawn&8]" with lore "&7Teleport back to Spawn.||&c5 Second Delay." to close then run [make player execute command "/spawn"]
+		format SLOT 14 of player with emerald named "&8[&a/Achievements&8]" with lore "&7View All the Achievements.||&7Try to complete them all!" to close then run [make player execute command "/Achievements"]
+		format SLOT 15 of player with empty map named "&8[&9/Msg&8]" with lore "&7Privately Message a Player." to run [make player execute command "/Msg"]
+		format SLOT 16 of player with gold nugget named "&8[&6/Balance&8]" with lore "&7Show how much Cash you have." to close then run [make player execute command "/Balance"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with arrow of infinity 1 named "&8[&bHelp Menu&8]" with lore "" to run [make player execute command "/Help"]
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with arrow named "&8[&bPage 2&8]" with lore "" to run [make player execute command "/HelpCommands2"]
+command /HelpCommands2:
+	trigger:
+		execute console command "/playsound mob.enderdragon.wings %player% ~ ~ ~ 1 1 1"
+		open chest with 3 row named "&8[&b&lHelp&8] &3Commands 2" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with redstone named "&8[&e/Ranks&8]" with lore "&7View all The Ranks in order." to close then run [make player execute command "/Ranks"]
+		format SLOT 11 of player with snowball named "&8[&3/Options&8]" with lore "&cComing soon" to be unstealable
+		format SLOT 12 of player with name tag named "&8[&b/Update&8]" with lore "&cFixes all your Profile issues" to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with arrow named "&8[&bPage 1&8]" with lore "" to run [make player execute command "/HelpCommands"]
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+command /HTP:
+	trigger:
+		execute console command "/playsound mob.enderdragon.wings %player% ~ ~ ~ 1 1 1"
+		open chest with 3 row named "&8[&b&lHelp&8] &3How to Play" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with clock named "&8[&3Controls&8]" with lore "" to run [make player execute command "/HTPControls"]
+		format SLOT 12 of player with clock named "&8[&3Gameplay&8]" with lore "" to run [make player execute command "/HTPGameplay"]
+		format SLOT 14 of player with clock named "&8[&3Techniques & Secrets&8]" with lore "" to run [make player execute command "/HTPTech"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with arrow of infinity 1 named "&8[&bHelp Menu&8]" with lore "" to run [make player execute command "/Help"]
+command /HTPControls:
+	trigger:
+		execute console command "/playsound mob.enderdragon.wings %player% ~ ~ ~ 1 1 1"
+		open chest with 3 row named "&8[&b&lHelp&8] &3How to Play" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 12 of player with iron horse armor named "&8[&3Reloading&8]" with lore "|| &3&lReload &8&l&m|&e  Item Drop Key|||| &eto reload any gun in the game, you must press|| &ethe item drop key you have set. Default is 'Q'" to be unstealable
+		format SLOT 14 of player with iron horse armor named "&8[&3Shooting&8]" with lore "|| &3&lShoot &8&l&m|&e  Right-Click||||&3&lScope/Zoom &8&l&m|&e  Left-Click &8- &7Some Guns have a Scope|||| &eShooting is very simple, Guns can shoot|| &eArrows, Snowballs, or Energy Blast. Scopes|| &eare equipped for a few guns." to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with arrow named "&8[&bHow to play&8]" with lore "" to run [make player execute command "/HTP"]
+command /HTPGameplay:
+	trigger:
+		execute console command "/playsound mob.enderdragon.wings %player% ~ ~ ~ 1 1 1"
+		open chest with 3 row named "&8[&b&lHelp&8] &3How to Play" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with iron horse armor named "&8[&3Ranking Up&8]" with lore "|| &eFor every player you kill you will level up. You need|| &ea certain amount of kills to rankup. Once you|| &erankup, you unlock 2 or more kits. it will|| &esend you a message telling you that you have ranked up.|| &eYou can list all the ranks with &b/Ranks&e and list the required kills." to be unstealable
+		format SLOT 11 of player with iron horse armor named "&8[&3Equipment&8]" with lore "|| &eYou can purchase equipment such as perks, attachments|| &eand Kits in the shop. kits are sent to your|| &ekits wardrobe, bought attachments will be added to your|| &eattachment selection menu, and perks will be added to|| &e your perk selection.||||&3&o&nUsage:&e|||| &eTo equip an attachment or perk, you must go into your perk|| &eor attachment selection window and select the perk|| &eor attachment. before you enter the selection menu|| &eit will tell you what attachment you have equipped." to be unstealable
+		format SLOT 12 of player with iron horse armor named "&8[&3Evasion&8]" with lore "|| &eThere is an event called Dodge! there is a 10%% chance|| &eof you Dodging an attack. Shifting increases|| &eyour dodge percentage to 25%%, so it would be|| &ebe useful to shift if your getting gunned in the air." to be unstealable
+		format SLOT 13 of player with iron horse armor named "&8[&3Potion Poles&8]" with lore "|| &ePotion poles are Poles/Towers that are|| &eplaced around the map. Standing near one|| &eof these towers would be helpful, as the poles|| &eGive you Splash potions of Healing." to be unstealable
+		format SLOT 14 of player with iron horse armor named "&8[&3KillStreaks&8]" with lore "|| &eFor every killstreak there is a reward. the|| &erewards could be Money or Keys or Somethig else..." to be unstealable
+		format SLOT 15 of player with iron horse armor named "&8[&3MysteryBoxes&8]" with lore "|| &eMysteryBoxes are note blocks that will spawn every|| &e10 votes, the Boxes contain money and keys&7(Which are Very Rare!)" to be unstealable
+		format SLOT 16 of player with iron horse armor named "&8[&3Events&8]" with lore "|| &cWork in Progress" to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with arrow named "&8[&bHow to play&8]" with lore "" to run [make player execute command "/HTP"]
+command /HTPTech:
+	trigger:
+		execute console command "/playsound mob.enderdragon.wings %player% ~ ~ ~ 1 1 1"
+		open chest with 3 row named "&8[&b&lHelp&8] &3How to Play" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with iron horse armor named "&8[&3Shotguns&8]" with lore "|| &eShifting with a shotgun can Greatly|| &eincrease the bullet spread." to be unstealable
+		format SLOT 12 of player with iron horse armor named "&8[&3Snipers&8]" with lore "|| &eAiming with a Sniper is the only way you|| &eachieve perfect accuracy but certain snipers|| &elike the Endrox from Kit EnderMage has Perfect|| &e accuracy even without scoping. Some snipers have the|| &esame ability as the Endrox." to be unstealable
+		format SLOT 14 of player with iron horse armor named "&8[&3Pistols&8]" with lore "|| &ePistols are actually stronger than machine guns.|| &eStrangly, Every Pistol in the game is stronger|| &ethan any other machine gun ever! the CZ75|| &eis one of the best pistols in the game." to be unstealable
+		format SLOT 16 of player with iron horse armor named "&8[&3Events&8]" with lore "|| &cWork in Progress." to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with arrow named "&8[&bHow to play&8]" with lore "" to run [make player execute command "/HTP"]

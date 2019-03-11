@@ -1,0 +1,36 @@
+variables:
+	{crossbow.%player%} = 0
+	{crossbow.loaded.%player%} = 0
+
+on login:
+	set {crossbow.%player%} to 0
+	set {crossbow.loaded.%player%} to 0
+
+on leftclick:
+	player's tool is a pickaxe named "&7Crossbow"
+	if {crossbow.%player%} is 0:
+		player has 1 arrow:
+			set {crossbow.%player%} to 1
+			message "&7&ocharging crossbow"
+			apply mining fatigue 30 to player for 3 seconds
+			wait 3 seconds
+			set {crossbow.loaded.%player%} to 1
+			remove 1 arrow from player
+			message "&7&ocrossbow loaded"
+			stop
+		message "&cYou don't have any arrows !"
+
+			
+on rightclick:
+	player's tool is a pickaxe named "&7Crossbow"
+	if {crossbow.loaded.%player%} is equal to 1:	
+		shoot arrow at speed 5
+		chance of 20%:
+			repair tool of player by -1
+		set {crossbow.%player%} to 0
+		set {crossbow.loaded.%player%} to 0
+
+on break:
+	player's tool is a pickaxe named "&7Crossbow":
+		cancel event
+	

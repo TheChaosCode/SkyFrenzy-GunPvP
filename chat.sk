@@ -1,0 +1,50 @@
+on chat:
+	cancel the event
+	set {_Sender} to "%player%"
+	set {_SUuid} to "%player's uuid%"
+	loop all players:
+		if "%{_Sender}%" is "ChaosJumper8":
+			cancel the event
+			send "&8[&3Lvl &9%{Kills::%player's uuid%}%&8] &c&lOwner&7&l > &7%player% &8&l> &7%colored message% &8&l<" to loop-player
+		else if "%{_Sender}%" is "Discarding":
+			cancel the event
+			send "&8[&3Lvl &9%{Kills::%player's uuid%}%&8] &c&lOwner&7&l > &7%player% &8&l> &7%colored message% &8&l<" to loop-player
+		else if {Staff::%player's uuid%} is "Mod":
+			cancel the event
+			send "&8[&eLvl &c%{Kills::%player's uuid%}%&8] &8[&e&lMod&8] &7%player% &8&l> &7%colored message% &8&l<" to loop-player
+		else if {Donor::%player's uuid%} is "Vip":
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&dVip&8] &7%player% &8&l> &7%colored message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 0:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&fRecruit&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 1:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&7Private&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 2:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&3Private2&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 3:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&bSpecialist&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 4:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&1Corporal&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 5:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&2Sergeant&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 6:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&aSSergeant&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 7:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&eSFC&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 8:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&6MasterSergeant&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 9:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&cFirstSergeant&8] &7%player% &8&l> &7%message% &8&l<" to loop-player
+		else if {Rank::%player's uuid%} is 10:
+			cancel the event
+			send "&8[&4Lvl &c%{Kills::%player's uuid%}%&8] &8[&4SergeantMajor&8] &7%player% &8&l> &7%message% &8&l<" to loop-player

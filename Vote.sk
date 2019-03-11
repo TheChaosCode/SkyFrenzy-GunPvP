@@ -1,0 +1,307 @@
+command /VoteReset:
+	trigger:
+		set {MBVSpawn} to 10
+		send "&bVote counter reset!"
+on vote:
+	broadcast "&9&l%player% &3voted at &b%event-string%!"
+	if {Donor::%player's uuid%} is "None":	
+		send "&3Thank You! for voting! &8&l> &e+$150"
+		add 150 to {Money::%player's uuid%}
+	else if {Donor::%player's uuid%} is "Vip":
+		send "&3Thank You! for voting! &8&l> &e+$300 &8[&eDonor&8]"
+		add 300 to {Money::%player's uuid%}
+	play raw sound "random.levelup" at player with pitch 0.75 volume 101
+	add 1 to {Votes::%player's uuid%}
+	if {MBVotes} is {MBVSpawn}:
+		//do nothing
+	else:
+		add 1 to {MBVotes}
+	if {MBVSpawn} is not set:
+		set {MBVSpawn} to 10
+	if {Votes::%player's uuid%} is 5:
+		add 1000 to {Money::%player's uuid%}
+		make player execute command "/APxHex"
+		message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &2&lAchievements &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+		message ""
+		message "   &2Achievement &9Server Voucher! &7(&a&oComplete!&7)"
+		message "   &7Reward &8&l| &e&o+$1,000"
+		message ""
+		message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &2&l&m-======-&r &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-"
+	chance of 30%:
+		add 500 to {Money::%player's uuid%}
+		chance of 50%:
+			send "&aWow you got Lucky :D &8&l> &e+$500"
+		else:
+			add 500 to {Money::%player's uuid%}
+			send "&bWow you got really Lucky :O &8&l> &e+$1,000"
+	chance of 0.02%:
+		add 1 to {BlueKey::%player's uuid%}
+		chance of 99.5%:
+			send " &8&l> &bYou have received &21x Blue Key&b! &8&l<"
+		else:
+			add 1 to {BlueKey::%player's uuid%}
+			chance of 99.99%:
+				send " &8&l> &bYou have received &22x Blue Key&b! &8&l<"
+			else:
+				add 1 to {BlueKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Blue Key&b! &8&l<"
+	chance of 0.5%:
+		add 1 to {PinkKey::%player's uuid%}
+		chance of 97%:
+			send " &8&l> &bYou have received &21x Pink Key&b! &8&l<"
+		else:
+			add 1 to {PinkKey::%player's uuid%}
+			chance of 99%:
+				send " &8&l> &bYou have received &22x Pink Key&b! &8&l<"
+			else:
+				add 1 to {PinkKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Pink Key&b! &8&l<"
+	chance of 5%:
+		add 1 to {RedKey::%player's uuid%}
+		chance of 90%:
+			send " &8&l> &bYou have received &21x Red Key&b! &8&l<"
+		else:
+			add 1 to {RedKey::%player's uuid%}
+			chance of 97%:
+				send " &8&l> &bYou have received &22x Red Key&b! &8&l<"
+			else:
+				add 1 to {RedKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Red Key&b! &8&l<"
+	chance of 10%:
+		add 1 to {YellowKey::%player's uuid%}
+		chance of 80%:
+			send " &8&l> &bYou have received &21x Yellow Key&b! &8&l<"
+		else:
+			add 1 to {YellowKey::%player's uuid%}
+			chance of 90%:
+				send " &8&l> &bYou have received &22x Yellow Key&b! &8&l<"
+			else:
+				add 1 to {YellowKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Yellow Key&b! &8&l<"
+	chance of 100%:
+		add 1 to {GreenKey::%player's uuid%}
+		chance of 70%:
+			send " &8&l> &bYou have received &21x Green Key&b! &8&l<"
+		else:
+			add 1 to {GreenKey::%player's uuid%}
+			chance of 80%:
+				send " &8&l> &bYou have received &22x Green Key&b! &8&l<"
+			else:
+				add 1 to {GreenKey::%player's uuid%}
+				send " &8&l> &bYou have received &23x Green Key&b! &8&l<"
+	if {MBVotes} is {MBVSpawn}:
+		set {MBVotes} to 0
+		add 1 to {MBVSpawn}
+		broadcast ""
+		broadcast " &8&l> &3&l%player% Summoned the Mystery Package! &8&l<"
+		broadcast ""
+		broadcast " &8&l> &3&lMystery Package Arriving in 5 minutes &8&l<"
+		broadcast ""
+		wait 1 minute
+		broadcast ""
+		broadcast " &8&l> &3&lMystery Package Arriving in 4 minutes &8&l<"
+		broadcast ""
+		wait 1 minute
+		broadcast ""
+		broadcast " &8&l> &3&lMystery Package Arriving in 3 minutes &8&l<"
+		broadcast ""
+		wait 1 minute
+		broadcast ""
+		broadcast " &8&l> &3&lMystery Package Arriving in 2 minutes &8&l<"
+		broadcast ""
+		wait 1 minute
+		broadcast ""
+		broadcast " &8&l> &3&lMystery Package Arriving in 1 minutes &8&l<"
+		broadcast ""
+		wait 59 second
+		set {MysteryP} to true
+		make player execute command "/smb"
+	else:
+		set {_MBV} to {MBVSpawn} - {MBVotes}
+		broadcast " &8&l> &b&l%{_MBV}% &3Votes until Mystery Package Spawn &8&l<"
+command /SMB:
+	trigger:
+		if {MysteryP} is not true:
+			stop
+		else:
+			set {MB} to a random integer between 0 and 3
+			if {MB} is 1:
+				set {Loc.MB.x} to a random integer between -50 and 50
+				set {Loc.MB.z} to a random integer between 50 and 135
+				spawn falling block of note block at location ({Loc.MB.x}, 250, {Loc.MB.z})
+				broadcast ""
+				broadcast " &8&l> &3&lMystery Package Spawn at &bx &8&l| &b%{Loc.MB.x}% z &8&l| &b%{Loc.MB.z}% &8&l<"
+				broadcast ""
+				stop
+			else if {MB} is 2:
+				set {Loc.MB.x} to a random integer between -120 and -70
+				set {Loc.MB.z} to a random integer between -70 and 30
+				spawn falling block of note block at location ({Loc.MB.x}, 250, {Loc.MB.z})
+				broadcast ""
+				broadcast " &8&l> &3&lMystery Package Spawn at &bx &8&l| &b%{Loc.MB.x}% z &8&l| &b%{Loc.MB.z}% &8&l<"
+				broadcast ""
+				stop
+			else if {MB} is 3:
+				set {Loc.MB.x} to a random integer between -50 and 80
+				set {Loc.MB.z} to a random integer between -25 and -45
+				spawn falling block of note block at location ({Loc.MB.x}, 250, {Loc.MB.z})
+				broadcast ""
+				broadcast " &8&l> &3&lMystery Package Spawn at &bx &8&l| &b%{Loc.MB.x}% z &8&l| &b%{Loc.MB.z}% &8&l<"
+				broadcast ""
+				stop
+			else if {MB} is 0:
+				set {Loc.MB.x} to a random integer between 65 and 125
+				set {Loc.MB.z} to a random integer between -100 and 20
+				spawn falling block of note block at location ({Loc.MB.x}, 250, {Loc.MB.z})
+				broadcast ""
+				broadcast " &8&l> &3&lMystery Package Spawn at &bx &8&l| &b%{Loc.MB.x}% z &8&l| &b%{Loc.MB.z}% &8&l<"
+				broadcast ""
+				stop
+
+command /setloc [<text>]:
+	executable by: players
+	trigger:
+		if player is not op:
+			stop
+			Send "&8[&bKitPvP&8] &cUnknown Command."
+		else if player is op:
+			if arg 1 is "1":
+				set {spawn1} to location of player
+				send " &8&l> &bSpawn 1 is set<"
+			if arg 1 is "2":
+				set {spawn2} to location of player
+				send " &8&l> &bSpawn 2 is set<"
+			if arg 1 is "3":
+				set {spawn3} to location of player
+				send " &8&l> &bSpawn 3 is set<"
+			if arg 1 is "4":
+				set {spawn4} to location of player
+				send " &8&l> &bSpawn 4 is set<"
+			if arg 1 is "5":
+				set {vip1} to location of player
+				send " &8&l> &bSpawn 5 vip is set<"
+			if arg 1 is "6":
+				set {vip2} to location of player
+				send " &8&l> &bSpawn 5 vip is set<"			
+			if arg 1 is "7":
+				set {vip3} to location of player
+				send " &8&l> &bSpawn 5 vip is set<"
+				
+On Portal Enter:
+	if {Kit::%player's uuid%} is "None":
+		send player title "&aChoose a kit" with subtitle "&7Befor entering the portal" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+		teleport player to {spawn}
+	else:
+		reveal the player from all players
+		teleport player to {spawn}
+		wait 2 tick
+		make player execute command "/spawnsxxx"
+			
+command /spawnsxxx:
+	executable by: players
+	trigger:
+		execute console command "/playsound mob.enderdragon.wings %player% ~ ~ ~ 1 1 1"
+		open chest with 3 row named "&aPlayer Spawns" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with Map named "&aSpawn 1" with lore "&7Farms" to run [make player execute command "/sp1"]
+		format SLOT 11 of player with Map named "&aSpawn 2" with lore "&7Church" to run [make player execute command "/sp2"]
+		format SLOT 12 of player with Map named "&aSpawn 3" with lore "&7Farms 2" to run [make player execute command "/sp3"]
+		format SLOT 13 of player with Map named "&aSpawn 4" with lore "&7French Bunkers" to run [make player execute command "/sp4"]
+		format SLOT 14 of player with diamond named "&dVip 1" with lore "&7Zaplin" to run [make player execute command "/vip1"]
+		format SLOT 15 of player with diamond named "&dVip 2" with lore "&7German HQ" to run [make player execute command "/vip2"]
+		format SLOT 16 of player with diamond named "&dVip 3" with lore "&7edge of Town" to run [make player execute command "/vip3"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+				
+command /sp1:
+	executable by: players
+	trigger:			
+		if {Kit::%player's uuid%} is "None":
+			send player title "&aChoose a kit" with subtitle "&7Befor entering the portal" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+		else:
+			teleport player to {spawn1}
+command /sp2:
+	executable by: players
+	trigger:			
+		if {Kit::%player's uuid%} is "None":
+			send player title "&aChoose a kit" with subtitle "&7Befor entering the portal" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+		else:
+			teleport player to {spawn2}
+command /sp3:
+	executable by: players
+	trigger:			
+		if {Kit::%player's uuid%} is "None":
+			send player title "&aChoose a kit" with subtitle "&7Befor entering the portal" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+		else:
+			teleport player to {spawn3}
+command /sp4:
+	executable by: players
+	trigger:			
+		if {Kit::%player's uuid%} is "None":
+			send player title "&aChoose a kit" with subtitle "&7Befor entering the portal" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+		else:
+			teleport player to {spawn4}
+command /vip1:
+	executable by: players
+	trigger:			
+		if {Kit::%player's uuid%} is "None":
+			send player title "&aChoose a kit" with subtitle "&7Befor entering the portal" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+			stop
+		else if {Donor::%player's uuid%} is "Vip":
+			teleport player to {vip1}
+			stop
+		else:
+			send player title "&aVip Only" with subtitle "&7Vip is required for this spawn" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+			stop
+command /vip2:
+	executable by: players
+	trigger:			
+		if {Kit::%player's uuid%} is "None":
+			send player title "&aChoose a kit" with subtitle "&7Befor entering the portal" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+			stop
+		else if {Donor::%player's uuid%} is "Vip":
+			teleport player to {vip2}
+			stop
+		else:
+			send player title "&aVip Only" with subtitle "&7Vip is required for this spawn" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+			stop
+command /vip3:
+	executable by: players
+	trigger:			
+		if {Kit::%player's uuid%} is "None":
+			send player title "&aChoose a kit" with subtitle "&7Befor entering the portal" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+			stop
+		else if {Donor::%player's uuid%} is "Vip":
+			teleport player to {vip3}
+			stop
+		else:
+			send player title "&aVip Only" with subtitle "&7Vip is required for this spawn" for 5 seconds with 10 ticks fade in and 30 ticks fade out
+			teleport player to {spawn}
+			stop

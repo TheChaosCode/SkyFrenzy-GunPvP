@@ -1,0 +1,93 @@
+command /Loot:
+	executable by: players
+	trigger:
+		wait 1 tick
+		open chest with 3 row named "&dOptions" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with green stained glass pane named "&a&lOn" with lore " " to close then run [make player execute command "/score on"]
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 12 of player with feather named "&7ScoreBoard " to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 19 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 20 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 21 of player with red stained glass pane named "&c&lOff" with lore " " to close then run [make player execute command "/score off"]
+		format SLOT 22 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 23 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 24 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 25 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		
+on script load:
+	if existence of "plugins/CrispyBoard/config.yml" is false:
+		delete {Scoreboard::config::*}
+		create file "plugins/CrispyBoard/config.yml"
+	if {Scoreboard::config::ScoreboardUpdate} is not set:
+		set yaml value "ScoreboardUpdate" from file "../../CrispyBoard/config.yml" to "10"
+	if {Scoreboard::config::ScoreboardTitleUpdate} is not set:
+		set yaml value "ScoreboardTitleUpdate" from file "../../CrispyBoard/config.yml" to "5"
+	if {Scoreboard::config::ScoreboardTitle::*} is not set:
+		add "&b&lCrispyBoard" to yaml list "ScoreboardTitle" from file "../../CrispyBoard/config.yml"
+		add "&f&lCrispyBoard" to yaml list "ScoreboardTitle" from file "../../CrispyBoard/config.yml"
+	if {Scoreboard::config::Scoreboard::*} is not set:
+		add "&aPlayer: &f%%player%%" to yaml list "Scoreboard" from file "../../CrispyBoard/config.yml"
+		add "&aKills: &f%{kills.%player%}%" to yaml list "Scoreboard" from file "../../CrispyBoard/config.yml"
+		add "&aDeaths: &f%{deaths.%player%}%" to yaml list "Scoreboard" from file "../../CrispyBoard/config.yml"
+	set {Scoreboard::config::Scoreboard::*} to yaml list "Scoreboard" from file "../../CrispyBoard/config.yml"
+	set {Scoreboard::config::ScoreboardUpdate} to yaml value "ScoreboardUpdate" from file "../../CrispyBoard/config.yml"
+	set {Scoreboard::config::ScoreboardTitleUpdate} to yaml value "ScoreboardTitleUpdate" from file "../../CrispyBoard/config.yml"
+	set {Scoreboard::config::ScoreboardTitle::*} to yaml list "ScoreboardTitle" from file "../../CrispyBoard/config.yml"
+	
+on join:
+	set {scoreboard::player::%player%} to "%player%"
+	create new simple scoreboard named {scoreboard::player::%player%}
+	set simple scoreboard of player to {scoreboard::player::%player%}
+	while player is online:
+		loop "%{Scoreboard::config::ScoreboardUpdate}%" parsed as integer times:
+			wait a tick
+		set {_n} to size of {Scoreboard::config::Scoreboard::*}
+		loop {Scoreboard::config::ScoreboardTitle::*}:
+			evaluate "set {_t} to ""%loop-value%"""
+			set title of simple {scoreboard::player::%player%} to "%{_t}%"
+			loop "%{Scoreboard::config::ScoreboardTitleUpdate}%" parsed as integer times:
+				wait a tick
+		loop {Scoreboard::config::Scoreboard::*}:
+			evaluate "set {_s} to ""%loop-value%"""
+			set slot {_n} of simple scoreboard {scoreboard::player::%player%} to "%{_s}%"
+			subtract 1 from {_n}
+	
+command /score [<text>]:
+	trigger:
+		if arg 1 is not set:
+			send "&cUsage: /score <on:off>"
+		if arg 1 is "on":
+			send "&8[&bscore&8] &7Sidebar is toggled &a&lON"
+			set {scoreboard::player::%player%} to "%player%"
+			create new simple scoreboard named {scoreboard::player::%player%}
+			set simple scoreboard of player to {scoreboard::player::%player%}
+			while player is online:
+				loop "%{Scoreboard::config::ScoreboardUpdate}%" parsed as integer times:
+					wait a tick
+				set {_n} to size of {Scoreboard::config::Scoreboard::*}
+				loop {Scoreboard::config::ScoreboardTitle::*}:
+					evaluate "set {_t} to ""%loop-value%"""
+					set title of simple {scoreboard::player::%player%} to "%{_t}%"
+					loop "%{Scoreboard::config::ScoreboardTitleUpdate}%" parsed as integer times:
+						wait a tick
+				loop {Scoreboard::config::Scoreboard::*}:
+					evaluate "set {_s} to ""%loop-value%"""
+					set slot {_n} of simple scoreboard {scoreboard::player::%player%} to "%{_s}%"
+					subtract 1 from {_n}
+		if arg 1 is "off":
+			delete player's sidebar
+			send "&8[&bscore&8] &7Sidebar is toggled &c&lOFF"
+		if arg 1 is not "on" or "off":
+			send "&cUsage: /score <on:off>"

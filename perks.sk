@@ -1,0 +1,104 @@
+command /PerkShop:
+	trigger:
+		open chest with 6 row named "&8[&b&lShop&8]" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 10 of player with chain helmet named "&8[&cMugger&8]" with lore "&3Price &8&l| &6$10,000||" to close then run [make player execute command "/MuggerxPurchase"]
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 27 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 35 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 36 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 44 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 45 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 46 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 47 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 48 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 49 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 50 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 51 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 52 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 53 of player with blue stained glass pane named " " to be unstealable
+command /PerkxWardrobe:
+	trigger:
+		open chest with 6 row named "&8[&b&lKits&8] &e&lPerks" to player
+		wait 2 tick
+		format SLOT 0 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 1 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 2 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 3 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 4 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 5 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 6 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 7 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 8 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 9 of player with blue stained glass pane named " " to be unstealable
+		if {Perk.Counter::%player's uuid%} is 1:
+			format SLOT 10 of player with diamond chestplate named "&8[&aCounter&8]" with lore "" to run [make player execute command "/CounterxSelect"]
+		else:
+			format SLOT 10 of player with white stained glass pane named " " with lore " " to be unstealable
+		if {Perk.Mugger::%player's uuid%} is 1:
+			format SLOT 11 of player with chain helmet named "&8[&cMugger&8]" with lore "" to run [make player execute command "/MuggerxSelect"]
+		else:
+			format SLOT 11 of player with white stained glass pane named " " with lore " " to be unstealable
+		format SLOT 17 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 18 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 26 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 27 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 35 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 36 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 44 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 45 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 46 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 47 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 48 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 49 of player with redstone block named "&8[&3Back to Kits Menu&8]" to run [make player execute command "/Kits"]
+		format SLOT 50 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 51 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 52 of player with blue stained glass pane named " " to be unstealable
+		format SLOT 53 of player with blue stained glass pane named " " to be unstealable
+
+
+
+command /CounterxSelect:
+	executable by: players
+	trigger:
+		set {Perk::%player's uuid%} to "Counter"
+		send "&b&lPerk &aCounter &b&lSelected!"
+		make player execute command "/kits"
+command /MuggerxSelect:
+	executable by: players
+	trigger:
+		set {Perk::%player's uuid%} to "Mugger"
+		send "&b&lPerk &cMugger &b&lSelected!"
+		make player execute command "/kits"
+		
+		
+		
+		
+		
+command /MuggerxPurchase:
+	trigger:
+		if {Perk.Mugger::%player's uuid%} is 1:
+			message "&8[&bKitpvp&8] &cYou have Already Purchased This!"
+			make player execute command "/perkshop"
+			stop
+		else if {Money::%player's uuid%} is greater than 9999:
+			remove 10000 from {Money::%player's uuid%}
+			set {Perk.Mugger::%player's uuid%} to 1
+			send "&8[&bKitpvp&8] &a&lYou have Purchased the Perk &cMugger"
+			add 1 to {Attachments::%player's uuid%}
+			stop
+		else:
+			message "&8[&bKitpvp&8] &cYou Do not have Enough Money to Buy this!"
+			make player execute command "/perkshop"

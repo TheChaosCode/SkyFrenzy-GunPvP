@@ -1,0 +1,196 @@
+options:
+	damaged: 0.5
+
+on damage of a player:
+	if {SafeZone::%victim's uuid%} is 1:
+		cancel event
+		stop
+	if damage cause is fall:
+		stop
+	if "%{Attacker::%victim's uuid%}%" is attacker:
+		set {HexNull} to 0
+	else if "%{Attacker::%victim's uuid%}%" is not attacker:
+		if the attacker is a player:
+			if the attacker is online:
+				set {Attacker::%victim's uuid%} to "%attacker%"
+on damage:
+	if {SafeZone::%victim's uuid%} is 1:
+		cancel event
+		stop
+	if {God::%victim's uuid%} is 1:
+		cancel the event
+		stop
+	if {Kit::%victim's uuid%} is "None":
+		set action bar of attacker to "&bYou Poped &3&l%victim% &bBack to Spawn!"
+		make victim execute command "/PlayerPopAnimation"
+		cancel the event
+		execute console command "/gamemode 3 %victim%"
+		thrust victim upwards at velocity 1.5
+		send victim title "&8&l-={ &3&l%Attacker% &bPoped you!&8&l}=-" with subtitle "&8&l-={ &3Please Choose a kit Before Entering the Battlefield! &8&l}=-" for 3 seconds with 40 ticks fade in and 20 ticks fade out
+		wait 5 second
+		teleport victim to {Spawn}
+		set {SafeZone::%victim's uuid%} to 1
+		set the victim's gamemode to adventure
+		stop
+	if {Kit::%attacker's uuid%} is "None":
+		set action bar of attacker to "&c&lCannot attack players without a kit!"
+		cancel the event
+		stop
+	if attacker is a player:
+		if {Damage::%victim's uuid%} is 0:
+			send "hi"
+			send "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &9&lCombat Tag &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to victim
+			send "&8" to victim
+			send "&8   &b%attacker% &3has Combat Tagged you! Do not logout as this action will result in a consequence!" to victim
+			send "&8" to victim
+			send "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &9&lCombat Tag &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to victim		
+			send "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &9&lCombat Tag &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to attacker
+			send "&8" to attacker
+			send "&8   &3You combat Tagged &b%victim%&3 Do not logout as this action will result in a consequence!" to attacker
+			send "&8" to attacker
+			send "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &9&lCombat Tag &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to attacker
+			set {Damage::%victim's uuid%} to 1
+			set {Damage::%attacker's uuid%} to 1
+			set {CombatLog::%attacker's uuid%} to 30
+			set {CombatLog::%victim's uuid%} to 30
+		if {Damage::%victim's uuid%} is 1:
+			set {CombatLog::%attacker's uuid%} to 30
+			set {CombatLog::%victim's uuid%} to 30
+on damage of a player:
+	if {SafeZone::%victim's uuid%} is 1:
+		cancel event
+		stop
+	if damage cause is fall:
+		stop
+	if victim is sneaking:
+		chance of 25%:
+			cancel the event
+			send victim title "" with subtitle "&8&l-={ &b&lDodged! &8&l}=-" for 0 seconds with 0 ticks fade in and 10 ticks fade out
+			send attacker title "" with subtitle "&8&l-={ &c&lMissed! &8&l}=-" for 0 seconds with 0 ticks fade in and 20 ticks fade out
+			add 1 to {Dodges::%victim's uuid%}
+			if {Dodges::%victim's uuid%} is 100:
+				add 750 to {Money::%victim's uuid%}
+				make victim execute command "/APxHex"
+				message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &2&lAchievements &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to victim
+				message "" to victim
+				message "   &2Achievement &9Dodger! &7(&a&oComplete!&7)" to victim
+				message "   &7Reward &8&l| &e&o+$750" to victim
+				message "" to victim
+				message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &2&l&m-======-&r &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to victim
+	else if victim is not sneaking:
+		chance of 10%:
+			cancel the event
+			send victim title "" with subtitle "&8&l-={ &b&lDodged! &8&l}=-" for 0 seconds with 0 ticks fade in and 10 ticks fade out
+			send attacker title "" with subtitle "&8&l-={ &c&lMissed! &8&l}=-" for 0 seconds with 0 ticks fade in and 20 ticks fade out
+			add 1 to {Dodges::%victim's uuid%}
+			if {Dodges::%victim's uuid%} is 100:
+				add 750 to {Money::%victim's uuid%}
+				make victim execute command "/APxHex"
+				message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &2&lAchievements &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to victim
+				message "" to victim
+				message "   &2Achievement &9Dodger! &7(&a&oComplete!&7)" to victim
+				message "   &7Reward &8&l| &e&o+$750" to victim
+				message "" to victim
+				message "&8&l&m-={&r &b&l&m=&r &8&l&m}=---=&8&l[ &2&l&m-======-&r &8&l]&8&l&m=---={&r &b&l&m=&r &8&l&m}=-" to victim
+	if {Perk::%victim's uuid%} is "Counter":
+		chance of 7%:
+			cancel the event
+			send victim title "" with subtitle "&8&l-={ &a&lCounter! &8&l}=-" for 0 seconds with 0 ticks fade in and 20 ticks fade out
+			send attacker title "" with subtitle "&8&l-={ &c&lCountered! &8&l}=-" for 0 seconds with 0 ticks fade in and 20 ticks fade out
+			set {Attacker::%attacker's uuid%} to victim
+			damage the attacker by damage / 2 hearts
+on damage of a player:
+	if {SafeZone::%victim's uuid%} is 1:
+		cancel event
+		stop
+	if damage cause is fall:
+		cancel event
+		stop
+	if {Kit::%victim's uuid%} is "None":
+		set action bar of attacker to "&bYou Poped &3&l%victim% &bBack to Spawn!"
+		make victim execute command "/PlayerPopAnimation"
+		cancel the event
+		execute console command "/gamemode 3 %victim%"
+		thrust victim upwards at velocity 1.5
+		send victim title "&3&l%Attacker% &bPoped you!" with subtitle "&8&l-={ &3Choose a kit Before Entering the Battlefield! &8&l}=-" for 3 seconds with 40 ticks fade in and 20 ticks fade out
+		wait 5 second
+		teleport victim to {Spawn}
+		set {SafeZone::%victim's uuid%} to 1
+		set the victim's gamemode to adventure
+		stop
+	if {Kit::%attacker's uuid%} is "None":
+		set action bar of attacker to "&c&lCannot attack players without a kit!"
+		cancel the event
+		stop		
+on damage:
+	if {SafeZone::%victim's uuid%} is 1:
+		cancel event
+		stop
+	if damage cause is fall:
+		stop
+	if health of victim is less than 1:
+		damage was caused by burning
+		cancel the event
+	if {God::%attacker's uuid%} is 1:
+		execute console command "/playsound mob.enderdragon.hit %victim% ~ ~ ~ 1 1.7 1"
+		execute console command "/playsound mob.enderdragon.hit %attacker% ~ ~ ~ 1 1.7 1"
+	else:
+		execute console command "/playsound mob.enderdragon.hit %attacker% ~ ~ ~ 1 1.7 1"
+		execute console command "/playsound mob.enderdragon.hit %victim% ~ ~ ~ 1 1.7 1"
+on damage of a player:
+	if {SafeZone::%victim's uuid%} is 1:
+		cancel event
+		stop
+	if {God::%attacker's uuid%} is 1:
+		cancel the event
+	else:
+		set {God::%attacker's uuid%} to 1
+		wait 3 tick
+		set {God::%attacker's uuid%} to 0
+on damage of a player:
+	if {SafeZone::%victim's uuid%} is 1:
+		cancel event
+		stop
+	if {God::%victim's uuid%} is 1:
+		cancel the event
+	if damage cause is fall:
+		cancel the event
+		stop
+	if {DM::%victim's uuid%} is 2:
+		set damage to damage * {@damaged}
+	set {SpawnTP::%victim's uuid%} to 1
+	set {SpawnTP::%attacker's uuid%} to 1
+	wait 2 tick
+	set {SpawnTP::%victim's uuid%} to 0
+	set {SpawnTP::%attacker's uuid%} to 0
+	if name of the attacker's tool is "&8-={ &9&oFaze Blade &8}=-":
+		hide attacker from victim
+		wait 8 tick
+		reveal attacker from victim
+	if name of the attacker's tool is "&8-={ &3Gravity Sword &8}=-":
+		set {_thing} to direction from attacker to victim
+		loop 20 times:
+			push victim {_thing} at speed 0.02
+			push victim upwards at speed 0.015
+			wait 1 tick
+	repair chestplate of the victim
+	repair helmet of the victim
+	repair leggings of the victim
+	repair boots of the victim
+on damage of player:
+	if {SafeZone::%victim's uuid%} is 1:
+		cancel event
+		stop
+	if damage cause is fall:
+		stop
+	wait 1 tick
+	size of {Assist.%victim's uuid%::*} is 0:
+		add "Hex" to {Assist.%victim's uuid%::*}
+	loop {Assist.%victim's uuid%::*}:
+		if attacker is a player:
+			if "%{Assist.%victim's uuid%::*}%" contains "%attacker%":
+				set {Null} to 0
+				stop
+			if "%{Assist.%victim's uuid%::*}%" does not contain "%attacker%":
+				add "%attacker%" to {Assist.%victim's uuid%::*}
+				stop
